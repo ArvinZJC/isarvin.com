@@ -1,0 +1,36 @@
+<script>
+  let bg = document.getElementById("page-bg");
+  bg.style.setProperty("will-change", "filter", "");
+  let hue = 0;
+
+  // Dark mode support.
+  let isDark = document.documentElement.classList.contains("dark");
+  document.addEventListener("hbThemeChange", (e) => {
+    isDark = e.detail.isDarkTheme();
+    console.debug("Theme changed manually - isDarkTheme? " + isDark);
+  });
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches }) => {
+      if (window.hbb.defaultTheme !== "system") {
+        return;
+      }
+
+      isDark = matches;
+      console.debug("Theme changed by system - isDarkTheme? " + isDark);
+    });
+
+  setInterval(function () {
+    hue = (hue + 1) % 360;
+
+    if (isDark) {
+      bg.style.setProperty(
+        "filter",
+        "hue-rotate(" + hue + "deg) invert(1) saturate(2)",
+        ""
+      );
+    } else {
+      bg.style.setProperty("filter", "hue-rotate(" + hue + "deg)", "");
+    }
+  }, 5000 / 360);
+</script>
