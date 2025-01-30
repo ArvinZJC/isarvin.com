@@ -16,15 +16,9 @@ marketing:
     org_name: ""
     description: "Personal blog and portfolio of Arvin Zhao (赵吉忱)."
     twitter: "arvinzjc"
-  analytics:
-    google_analytics: ""
-    baidu_tongji: ""
-    plausible: ""
-    fathom: ""
-    pirsch: ""
   verification:
-    google: ""
-    baidu: ""
+    google: "" # Verified via Cloudflare.
+    baidu: "codeva-C1Si5bUvTS"
 
 # Site header.
 header:
