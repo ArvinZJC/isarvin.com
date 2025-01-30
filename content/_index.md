@@ -22,7 +22,7 @@ sections:
       # Need a custom icon?
       # Add an SVG image to the `assets/media/icons/` folder and reference it in the `icon` field below.
       buttons:
-        - text: Read my blog
+        - text: Blog
           icon: hero/light-bulb
           url: blog
 ---
