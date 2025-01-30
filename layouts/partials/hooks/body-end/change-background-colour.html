@@ -9,10 +9,16 @@
     isDark = e.detail.isDarkTheme();
     console.debug("Theme changed manually - isDarkTheme? " + isDark);
   });
+
+  // Listen for system theme changes.
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", ({ matches }) => {
-      if (window.hbb.defaultTheme !== "system") {
+      // Change background colour here for the system default mode only.
+      if (
+        "wc-color-theme" in localStorage ||
+        window.hbb.defaultTheme !== "system"
+      ) {
         return;
       }
 
