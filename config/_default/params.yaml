@@ -18,7 +18,10 @@ marketing:
     twitter: "arvinzjc"
   verification:
     google: "" # Verified via Cloudflare.
-    baidu: "codeva-4JrrgiqP9n"
+    bing: "" # Imported from GSC.
+    baidu: "" # Filing my domain in PRC is currently impossible.
+    yandex: "" # Verified via a DNS record.
+    pinterest: "" # Verified via a DNS record.
 
 # Site header.
 header:
