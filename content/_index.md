@@ -23,6 +23,9 @@ sections:
       # Add an SVG image to the `assets/media/icons/` folder and reference it in the `icon` field below.
       buttons:
         - text: Blog
-          icon: hero/light-bulb
+          icon: custom/blog
           url: blog
+        - text: Miscellaneous
+          icon: hero/ellipsis-horizontal-circle
+          url: misc
 ---
