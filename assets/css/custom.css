@@ -9,3 +9,12 @@
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
+
+.pagefind-ui__drawer {
+  backdrop-filter: blur(16px) !important;
+}
+
+.pagefind-ui__results {
+  max-height: 50vh !important;
+  overflow: auto !important;
+}

@@ -27,7 +27,7 @@ marketing:
 header:
   navbar:
     enable: true
-    fixed_to_top: true # TODO: Can have display issues.
+    fixed_to_top: true
     logo:
       text: "Arvin Zhao"
       filename: "logo.png"
