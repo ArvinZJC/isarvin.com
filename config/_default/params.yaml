@@ -47,6 +47,17 @@ locale:
 
 # Site features
 features:
+  comment:
+    # Choose a provider: giscus, disqus, commento, or '' to disable commenting
+    provider: "giscus"
+    giscus:
+      repo: "ArvinZJC/isarvin.com"
+      repo_id: "R_kgDONxLEGA"
+      category: "Announcements"
+      category_id: "DIC_kwDONxLEGM4CmiRG"
+      theme: preferred_color_scheme
+      language_code: en
+      mapping: pathname
   math:
     enable: true
   privacy_pack:

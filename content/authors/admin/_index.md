@@ -24,6 +24,9 @@ organizations:
   - name: China Telecom Cloud Computing
     url: https://www.ctyun.cn
 
+# Short bio (displayed in user profile at end of posts).
+bio: "The answer to `whoami` is `IDUNNO`."
+
 # Social Networking.
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
@@ -40,6 +43,12 @@ profiles:
     url: https://weibo.com/u/3218812301
   - icon: brands/x
     url: https://x.com/arvinzjc
+
+# Highlight the author in author lists? (true/false)
+highlight_name: true
+
+# Author's website URL
+website: "/"
 ---
 
 Arvin Zhao (赵吉忱) claims to be a top expert in cloud computing, but in reality, he is just an introverted geek.
