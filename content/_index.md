@@ -25,6 +25,9 @@ sections:
         - text: Blog
           icon: custom/blog
           url: blog/
+        - text: Uses
+          icon: hero/cursor-arrow-ripple
+          url: uses/
         - text: Miscellaneous
           icon: hero/ellipsis-horizontal-circle
           url: misc/
