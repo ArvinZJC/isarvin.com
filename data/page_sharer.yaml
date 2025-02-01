@@ -1,0 +1,40 @@
+# Hugo Blox.
+# Social sharing links.
+# Docs: https://docs.hugoblox.com/reference/page-sharer/
+
+links:
+  - id: weibo
+    url: "https://service.weibo.com/share/share.php?url={url}&title={title}"
+    title: Weibo
+    icon: custom/weibo
+    enable: true
+  - id: x
+    url: "https://x.com/intent/tweet?url={url}&text={title}"
+    title: X
+    icon: brands/x
+    enable: true
+  - id: facebook
+    url: "https://www.facebook.com/sharer.php?u={url}&t={title}"
+    title: Facebook
+    icon: brands/facebook
+    enable: true
+  - id: reddit
+    url: "https://reddit.com/submit?url={url}&title={title}"
+    title: Reddit
+    icon: custom/reddit
+    enable: true
+  - id: linkedin
+    url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+    title: LinkedIn
+    icon: brands/linkedin
+    enable: true
+  - id: pinterest
+    url: "https://pinterest.com/pin/create/link/?url={url}&description={title}"
+    title: Pinterest
+    icon: custom/pinterest
+    enable: true
+  - id: email
+    url: "mailto:?subject={title}&body={url}"
+    title: Email
+    icon: hero/at-symbol
+    enable: true
