@@ -24,8 +24,8 @@ sections:
       buttons:
         - text: Blog
           icon: custom/blog
-          url: blog
+          url: blog/
         - text: Miscellaneous
           icon: hero/ellipsis-horizontal-circle
-          url: misc
+          url: misc/
 ---

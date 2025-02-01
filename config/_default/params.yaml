@@ -1,4 +1,4 @@
-# SITE SETUP
+# SITE SETUP.
 # Guide: https://docs.hugoblox.com/tutorial/
 # Documentation: https://docs.hugoblox.com/
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
@@ -27,7 +27,13 @@ marketing:
 header:
   navbar:
     enable: true
-    blox: floating-theme-toggler
+    fixed_to_top: true # TODO: Can have display issues.
+    logo:
+      text: "Arvin Zhao"
+      filename: "logo.png"
+    show_theme_chooser: true
+    show_search: true
+    highlight_active_link: true
 
 # Site footer.
 footer:
@@ -38,3 +44,10 @@ footer:
 locale:
   date_format: "2 Jan, 2006"
   time_format: "15:04"
+
+# Site features
+features:
+  math:
+    enable: true
+  privacy_pack:
+    enable: false

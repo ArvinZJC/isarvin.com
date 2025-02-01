@@ -39,7 +39,7 @@ profiles:
   - icon: custom/weibo
     url: https://weibo.com/u/3218812301
   - icon: brands/x
-    url: https://twitter.com/arvinzjc
+    url: https://x.com/arvinzjc
 ---
 
 Arvin Zhao (赵吉忱) claims to be a top expert in cloud computing, but in reality, he is just an introverted geek.
