@@ -35,14 +35,22 @@ profiles:
     label: Email Arvin
   - icon: brands/github
     url: https://github.com/ArvinZJC
+    label: GitHub
   - icon: brands/instagram
     url: https://www.instagram.com/arvinzjc
+    label: Instagram
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/arvinzjc
+    label: LinkedIn
   - icon: custom/weibo
     url: https://weibo.com/u/3218812301
+    label: Weibo
   - icon: brands/x
     url: https://x.com/arvinzjc
+    label: X
+  - icon: hero/rss
+    url: /index.xml
+    label: RSS
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
