@@ -6,20 +6,8 @@ main:
     url: /
     weight: 10
   - name: Blog
-    identifier: blog
-    weight: 20
-  - name: Posts
-    parent: blog
     url: blog/
-    weight: 10
-  - name: Categories
-    parent: blog
-    url: categories/
     weight: 20
-  - name: Tags
-    parent: blog
-    url: tags/
-    weight: 30
   - name: Uses
     url: uses/
     weight: 30
