@@ -24,11 +24,11 @@ sections:
       buttons:
         - text: Blog
           icon: custom/blog
-          url: blog/
+          url: /blog
         - text: Uses
           icon: hero/cursor-arrow-ripple
-          url: uses/
+          url: /uses
         - text: Miscellaneous
           icon: hero/ellipsis-horizontal-circle
-          url: misc/
+          url: /misc
 ---

@@ -6,11 +6,11 @@ main:
     url: /
     weight: 10
   - name: Blog
-    url: blog/
+    url: /blog
     weight: 20
   - name: Uses
-    url: uses/
+    url: /uses
     weight: 30
   - name: Miscellaneous
-    url: misc/
+    url: /misc
     weight: 40
