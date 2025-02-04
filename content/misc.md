@@ -1,5 +1,6 @@
 ---
 title: Miscellaneous
+summary: "Misc content."
 date: 2025-02-01
 pager: false
 hide_date: true
@@ -7,6 +8,8 @@ reading_time: false
 ---
 
 > Only the thought that we put into life is valuable.
+
+{{< toc mobile_only=true is_open=true >}}
 
 ## 💡 Patents
 

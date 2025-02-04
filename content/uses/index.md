@@ -5,11 +5,25 @@ pager: false
 hide_date: true
 reading_time: false
 commentable: true
+
+# Cover image.
+# To use, place an image named `featured.jpg/png` in your page's folder.
+# Otherwise, specify the `filename` option to load an image from your `assets/media/` folder.
+# Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width
+# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
+# Set `preview_only` to `true` to just use the image for thumbnails.
+image:
+  placement: 1
+  caption: "Shot at home on 4 Feb, 2025"
+  focal_point: "Smart"
+  preview_only: false
+  alt_text: "My workspace at home."
+  # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-![My workspace at home](workspace.png)
-
 Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to build my own `/uses` page. I don't expect to include every specific in this page, yet it's sufficient for a spotlight on things I touch on a regular basis. Though, I don't reckon it captures much attention. It was fun anyway. 😼
+
+{{< toc mobile_only=true is_open=true >}}
 
 ## 💎 Devices & Envs
 
