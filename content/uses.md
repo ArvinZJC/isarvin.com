@@ -4,6 +4,7 @@ date: 2025-02-01
 pager: false
 hide_date: true
 reading_time: false
+commentable: true
 ---
 
 ![My workspace at home](workspace.png)
