@@ -17,7 +17,7 @@ status:
 superuser: true
 
 # Role/Position/Tagline.
-role: Back End Developer
+role: Backend Developer
 
 # Organisations/Affiliations to show in About widget.
 organizations:
@@ -59,4 +59,6 @@ highlight_name: true
 website: "/"
 ---
 
-Arvin Zhao (赵吉忱) claims to be a top expert in cloud computing, but in reality, he is just an introverted geek.
+Arvin Zhao (赵吉忱) claims to be a top expert in cloud computing, but in reality, he is just an introverted geek with great passion.
+
+Alumni [@UofG](https://www.gla.ac.uk)
