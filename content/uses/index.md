@@ -66,7 +66,7 @@ It means: Buy productivity before purchase, but end up watching iQIYI afterward.
 
 ### macOS Sequoia
 
-A 16-inch MacBook Pro with an Apple M2 Max chip, 64GB memory, and 1TB SSD storage. It cost a log of money but who cares? <mark>As long as I love it, it's worth it.</mark> 🤓
+A 16-inch MacBook Pro with an Apple M2 Max chip, 64GB memory, and 1TB SSD storage. It cost a log of money. But who cares? <mark>As long as I love it, it's worth it.</mark> 🤓
 
 ### watchOS 11
 
