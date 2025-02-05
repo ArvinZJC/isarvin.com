@@ -31,7 +31,7 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 
 A HUAWEI Pura 70 with 12GB RAM and 256GB storage.
 
-Due to no AOSP core, Android apps cannot run on a HarmonyOS NEXT device unless a HarmonyOS native app leveraging container-based features[^1] is installed. I'm not for such native app because it can lead to compatibility issues and I consider it a poison for ecosystem dev. Anyway, we'll see. 🕵
+Due to no AOSP core, Android apps cannot run on a HarmonyOS NEXT device unless a HarmonyOS native app leveraging container-based features[^1] is installed. I'm not for such native app because it can lead to compatibility issues, and I consider it a poison for ecosystem dev. Anyway, we'll see. 🕵
 
 ### Linux Distros
 
