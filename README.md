@@ -6,7 +6,3 @@
 [![GitHub](https://img.shields.io/github/license/ArvinZJC/isarvin.com)](./LICENCE)
 
 Yes, this is Arvin. Here is my personal blog and portfolio, made with [Hugo Blox](https://hugoblox.com/).
-
-> [!NOTE]
->
-> Personal blog is still on its way...
