@@ -44,11 +44,11 @@ Some of the projects I participate in still use Python 2.7. It can be an effort 
 {{% callout note %}}
 
 1. [Running Black requires Python 3](https://black.readthedocs.io/en/stable/faq.html#which-python-versions-does-black-support), even for formatting Python 2 code.
-2. The following assumes you have admin/root privileges and use *pip* as your package installer. Adjustments may be required to match your env.
+2. The following assumes you have admin/root privileges and use _pip_ as your package installer. Adjustments may be required to match your env.
 
 {{% /callout %}}
 
-I'm not to provide details on how to install Python 3 and ensure a package installer (e.g., *pip*). You might search the web if your env did not meet the prerequisites.
+I'm not to provide details on how to install Python 3 and ensure a package installer (e.g., _pip_). You might search the web if your env did not meet the prerequisites.
 
 ```bash
 python3 -V
@@ -65,15 +65,11 @@ V21.12b0 is the last Black version with support for formatting Python 2 code. As
 
 `click <= 8.0.4` is also required. Otherwise, you may encounter an error saying `ImportError: cannot import name '_unicodefun' from 'click'` when running Black.
 
-{{% callout note %}}
-
-The above `python2` key of Black means to install the optional dependency *typed-ast*, which [has been archived and no longer needed for most use cases](https://github.com/python/typed_ast/issues/179). If there was no matched pre-built binary package for your env, you might sometimes find it problematic to build one, complaining about either a Clang or a GCC issue. My suggestion is to remove `[python2]` as shown below. It generally works fine.
+The above `python2` key of Black means to install the optional dependency _typed-ast_, which [has been archived and no longer needed for most use cases](https://github.com/python/typed_ast/issues/179). If there was no matched pre-built binary package for your env, you might sometimes find it problematic to build one, complaining about either a Clang or a GCC issue. My suggestion is to remove `[python2]` as shown below. It generally works fine.
 
 ```bash
 python3 -m pip install black==21.12b0 click==8.0.4
 ```
-
-{{% /callout %}}
 
 ### Verify Installation
 
