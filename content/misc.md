@@ -18,3 +18,6 @@ reading_time: false
 ## 🧩 Unsorted
 
 - [镜维 JSON 模式配置生成工具](https://182.42.149.219:6699)
+- [Chat with DeepSeek-R1-Distill-Qwen-7B](http://117.89.85.209:3000)[^1]
+
+[^1]: CPU mode on trial. Definitely, not that robust.
