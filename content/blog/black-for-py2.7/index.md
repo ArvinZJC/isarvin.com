@@ -1,6 +1,6 @@
 ---
-title: "A Starter for Python 2.7 Code Formatting with Black"
-summary: "How to install Black to enable formatting Python 2.7 code?"
+title: "A Starter for Python 2 Code Formatting with Black"
+summary: "How to install Black to enable formatting Python 2 code?"
 date: 2025-02-09
 authors:
   - admin
@@ -9,8 +9,9 @@ categories:
   - Tutorial
 tags:
   - "Code Formatter"
-  - "Python 2.7"
+  - "Python 2"
   - Black
+  - Python
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.
@@ -29,7 +30,7 @@ image:
 
 {{% callout warning %}}
 
-[Python 2.7 has reached its EOL on 1st Jan, 2020.](https://www.python.org/doc/sunset-python-2) Please upgrade your Python if possible.
+Python 2.7 is the last major version in the 2.x series and [has reached its EOL on 1st Jan, 2020](https://www.python.org/doc/sunset-python-2). Please upgrade your Python if possible.
 
 {{% /callout %}}
 
@@ -43,7 +44,7 @@ Some of the projects I participate in still use Python 2.7. It can be an effort 
 
 {{% callout note %}}
 
-1. [Running Black requires Python 3](https://black.readthedocs.io/en/stable/faq.html#which-python-versions-does-black-support), even for formatting Python 2 code.
+1. [Running Black requires Python 3](https://github.com/psf/black/blob/21.12b0/docs/faq.md#does-black-support-python-2), even for formatting Python 2 code.
 2. The following assumes you have admin/root privileges and use _pip_ as your package installer. Adjustments may be required to match your env.
 
 {{% /callout %}}
