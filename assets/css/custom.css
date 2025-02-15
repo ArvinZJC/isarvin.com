@@ -1,20 +1,9 @@
-.page-body {
-  flex-grow: 1;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
 .page-footer {
-  flex-shrink: 0;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
-.pagefind-ui__drawer {
-  backdrop-filter: blur(16px) !important;
-}
-
-.pagefind-ui__results {
-  max-height: 50vh !important;
-  overflow: auto !important;
+.resume-biography {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
