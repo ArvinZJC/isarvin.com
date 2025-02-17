@@ -1,7 +1,9 @@
-.page-body .flex-col,
-.page-body .max-w-prose {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+@media (width <= 40rem) {
+  .page-body .flex-col,
+  .page-body .max-w-prose {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 .page-footer {
