@@ -21,7 +21,7 @@ tags:
 # Set `preview_only` to `true` to just use the image for thumbnails.
 image:
   placement: 1
-  caption: "Downloaded from [GitHub](https://raw.githubusercontent.com/psf/black/main/docs/_static/logo2-readme.png)"
+  caption: "Reproduced with a Black logo."
   focal_point: "Center"
   preview_only: true
   alt_text: "Black logo."
