@@ -18,7 +18,7 @@ tags:
 # Set `preview_only` to `true` to just use the image for thumbnails.
 image:
   placement: 1
-  caption: "Shot in my hometown on 27 Jan, 2025"
+  caption: "Shot in my hometown on 27 Jan, 2025."
   focal_point: "Smart"
   preview_only: false
   alt_text: "A red Chinese lantern with gold lettering and a colourful figure, resting on snow."

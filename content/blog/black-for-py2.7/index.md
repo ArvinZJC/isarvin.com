@@ -36,12 +36,6 @@ Python 2.7 is the last major version in the 2.x series and [has reached its EOL 
 
 Some of the projects I participate in still use Python 2.7. It can be an effort to install Black in this case without practice, so I'd like to show a series of steps as follows to save your time.
 
-{{< toc mobile_only=true is_open=true >}}
-
-{{% steps %}}
-
-### Prerequisites: Python 3.6+ with a Package Installer
-
 {{% callout note %}}
 
 1. [Running Black requires Python 3](https://github.com/psf/black/blob/21.12b0/docs/faq.md#does-black-support-python-2), even for formatting Python 2 code.
@@ -49,14 +43,20 @@ Some of the projects I participate in still use Python 2.7. It can be an effort 
 
 {{% /callout %}}
 
+{{< toc mobile_only=true is_open=true >}}
+
+{{% steps %}}
+
+### Prerequisites: Python 3.6+ with a package installer
+
 I'm not to provide details on how to install Python 3 and ensure a package installer (e.g., _pip_). You might search the web if your env did not meet the prerequisites.
 
 ```bash
-python3 -V
+command -v python3
 python3 -m pip -V
 ```
 
-### Install a Specific Black Version
+### Install a specific Black version
 
 ```bash
 python3 -m pip install 'black[python2]==21.12b0' click==8.0.4
@@ -72,7 +72,7 @@ The above `python2` key of Black means to install the optional dependency _typed
 python3 -m pip install black==21.12b0 click==8.0.4
 ```
 
-### Verify Installation
+### Verify installation
 
 ```bash
 python3 -m black --version
