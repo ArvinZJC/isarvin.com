@@ -36,7 +36,7 @@ Due to no AOSP core, Android apps cannot run on a HarmonyOS NEXT device unless a
 ### Linux Distros
 
 - An ECS instance with `s3.2xlarge.2` running openEuler 24.09 on [China Telecom Cloud Computing](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
-- An AArch64 VM running Fedora Workstation 41 on [Parallels Desktop](https://www.parallels.com).
+- An AArch64 VM running Fedora Workstation 42 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
 - A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 - Several Docker containers for work running CTyunOS 2.0.1 on [my MBP](#macos-sequoia). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
@@ -48,7 +48,7 @@ Due to no AOSP core, Android apps cannot run on a HarmonyOS NEXT device unless a
 
 ### Windows Server 2022
 
-2 cloud PCs for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
+A cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 
 ### iOS 18
 
