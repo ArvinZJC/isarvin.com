@@ -9,12 +9,18 @@ name_pronunciation: Zhao Ji Chen
 first_name: Arvin
 last_name: Zhao
 
+# Pronouns (optional)
+pronouns: he/him
+
 # Status emoji.
 status:
   icon: 😎
 
 # Is this the primary user of the site?
 superuser: true
+
+# Highlight the author in author lists? (true/false)
+highlight_name: true
 
 # Role/Position/Tagline.
 role: Backend Developer
@@ -27,7 +33,7 @@ organizations:
 # Short bio (displayed in user profile at end of posts).
 bio: "The answer to `whoami` is `IDUNNO`."
 
-# Social Networking.
+# Social network links.
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
@@ -51,9 +57,6 @@ profiles:
   - icon: hero/rss
     url: /index.xml
     label: RSS
-
-# Highlight the author in author lists? (true/false)
-highlight_name: true
 
 # Author's website URL
 website: "/"

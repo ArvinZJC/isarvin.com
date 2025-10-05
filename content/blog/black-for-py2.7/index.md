@@ -28,20 +28,16 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-{{% callout warning %}}
-
-Python 2.7 is the last major version in the 2.x series and [has reached its EOL on 1st Jan, 2020](https://www.python.org/doc/sunset-python-2). Please upgrade your Python if possible.
-
-{{% /callout %}}
+> [!CAUTION]
+>
+> Python 2.7 is the last major version in the 2.x series and [has reached its EOL on 1st Jan, 2020](https://www.python.org/doc/sunset-python-2). Please upgrade your Python if possible.
 
 Some of the projects I participate in still use Python 2.7. It can be an effort to install Black in this case without practice, so I'd like to show a series of steps as follows to save your time.
 
-{{% callout note %}}
-
-1. [Running Black requires Python 3](https://github.com/psf/black/blob/21.12b0/docs/faq.md#does-black-support-python-2), even for formatting Python 2 code.
-2. The following assumes you have admin/root privileges and use _pip_ as your package installer. Adjustments may be required to match your env.
-
-{{% /callout %}}
+> [!NOTE]
+>
+> 1. [Running Black requires Python 3](https://github.com/psf/black/blob/21.12b0/docs/faq.md#does-black-support-python-2), even for formatting Python 2 code.
+> 2. The following assumes you have admin/root privileges and use _pip_ as your package installer. Adjustments may be required to match your env.
 
 {{< toc mobile_only=true is_open=true >}}
 

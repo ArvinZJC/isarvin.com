@@ -31,12 +31,10 @@ image:
 
 [PyPy's official documentation](https://doc.pypy.org/en/latest/build.html) provides general guidance on building from its source. Since PyPy does not support Linux LoongArch64 officially, I would like to share my practice to build a binary for this relatively new architecture.
 
-{{% callout note %}}
-
-1. The following is demonstrated with the root user in a LoongArch64 VM running Kylin Server V10 SP3. Adjustments may be required to match your env.
-2. PyPy 3.11 v7.3.18 is used. Other PyPy 3 versions can follow a similar way.
-
-{{% /callout %}}
+> [!NOTE]
+>
+> 1. The following is demonstrated with the root user in a LoongArch64 VM running Kylin Server V10 SP3. Adjustments may be required to match your env.
+> 2. PyPy 3.11 v7.3.18 is used. Other PyPy 3 versions can follow a similar way.
 
 In particular, I should stress that this OS version leverages old-world[^1] technologies.
 
@@ -65,11 +63,9 @@ tar -xvf pypy3.11-v7.3.18-src.tar.bz2
 # Apply patches here.
 ```
 
-{{% callout note %}}
-
-Patches must be applied to support LoongArch64. You may refer to [one of my GitHub repo](https://github.com/ArvinZJC/pypy/tree/dev).
-
-{{% /callout %}}
+> [!IMPORTANT]
+>
+> Patches must be applied to support LoongArch64. You may refer to [one of my GitHub repo](https://github.com/ArvinZJC/pypy/tree/dev).
 
 ### Install build-time dependencies
 

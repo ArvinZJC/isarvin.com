@@ -2,12 +2,31 @@
   let bg = document.getElementById("page-bg");
   bg.style.setProperty("will-change", "filter", "");
   let hue = 0;
-
-  // Dark mode support.
   let isDark = document.documentElement.classList.contains("dark");
+
+  // Listen for manual theme changes.
   document.addEventListener("hbThemeChange", (e) => {
     isDark = e.detail.isDarkTheme();
     console.debug("Theme changed manually - isDarkTheme? " + isDark);
+
+    function sendMessage(message) {
+      let iframe = document.querySelector("iframe.giscus-frame");
+
+      if (!iframe) {
+        return;
+      }
+
+      iframe.contentWindow.postMessage(
+        { giscus: message },
+        "https://giscus.app"
+      );
+    }
+
+    sendMessage({
+      setConfig: {
+        theme: isDark ? "dark" : "light",
+      },
+    });
   });
 
   // Listen for system theme changes.
