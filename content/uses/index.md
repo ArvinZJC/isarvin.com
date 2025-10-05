@@ -41,20 +41,19 @@ Due to no AOSP core, Android apps cannot run on a HarmonyOS NEXT device unless a
 - A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 - Several Docker containers for work running CTyunOS 2.0.1 on [my MBP](#macos-sequoia). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
 
-### Windows 11
+### Windows 11 25H2
 
-- A Lenovo ThinkPad laptop "given"[^2] to me by the company I serve. It's not my type, so I rarely power it up. 😴
-- An AArch64 VM on [Parallels Desktop](https://www.parallels.com).
+An AArch64 VM on [Parallels Desktop](https://www.parallels.com).
 
 ### Windows Server 2022
 
 A cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 
-### iOS 18
+### iOS 26
 
 An iPhone 15 Pro with 256GB storage.
 
-### iPadOS 18
+### iPadOS 26
 
 An 11-inch iPad Pro with an Apple M4 chip, 512GB storage, an Apple Pencil Pro with no engraving, and a Magic Keyboard.
 
@@ -64,11 +63,11 @@ There's a self-deprecating joke.
 
 It means: Buy productivity before purchase, but end up watching iQIYI afterward. 🤷‍♂️
 
-### macOS Sequoia
+### macOS Tahoe
 
 A 16-inch MacBook Pro with an Apple M2 Max chip, 64GB memory, and 1TB SSD storage. It cost a log of money. But who cares? <mark>As long as I love it, it's worth it.</mark> 🤓
 
-### watchOS 11
+### watchOS 26
 
 An Apple Watch Series 8 (GPS, 45mm).
 
@@ -81,18 +80,16 @@ An Apple Watch Series 8 (GPS, 45mm).
 
   - Go: [GoLand](https://www.jetbrains.com/go).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
-  - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^3].
+  - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
 
 - To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
 - I prefer [WindTerm](https://github.com/kingToolbox/WindTerm) and [Xterminal](https://www.xterminal.cn) as my terminals for all of my local envs. [Xshell](https://www.netsarang.com/en/xshell) is installed on Windows as a requirement to access work envs.
 - [Apifox](https://apifox.com) is an API platform I use for debugging and some of QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I would leave no comment. It's generally good for teamwork.
 - Any other stuff? So much, but this might be worthy of attention. **Due to limited free time I would spend currently on my repos**, my personal blog and portfolio could be impossible without [Cloudflare](https://www.cloudflare.com), [Hugo](https://github.com/gohugoio/hugo), [Hugo Blox Builder](https://github.com/HugoBlox/hugo-blox-builder), [Vercel](https://vercel.com), as well as [giscus](https://github.com/giscus/giscus). ❤️
 
-{{% callout "hero/face-frown" %}}
-
-I used to build this site on my own with [Tailwind CSS](https://tailwindcss.com), [Vite](https://vite.dev), and [Vue.js](https://vuejs.org). Unfortunately, I abandoned this way and archived [the related repo](https://github.com/ArvinZJC/isarvin).
-
-{{% /callout %}}
+> [!TIP]
+>
+> I used to build this site on my own with [Tailwind CSS](https://tailwindcss.com), [Vite](https://vite.dev), and [Vue.js](https://vuejs.org). Unfortunately, I abandoned this way and archived [the related repo](https://github.com/ArvinZJC/isarvin).
 
 ## 🚀 Productivity
 
@@ -103,6 +100,20 @@ I used to build this site on my own with [Tailwind CSS](https://tailwindcss.com)
 - [WPS](https://www.wps.com).
 - [draw.io](https://www.drawio.com).
 
+## 🚦Wheels & Drives
+
+- My go-to XDS mountain bike for trails, weekend escapes, or just clearing my head while pedalling.
+
+  ![My XDS mountain bike.](xds-bike.jpeg)
+
+- 2025 ARCFOX aT5 630 Divine Version: my electric ride for daily commuting and road trips.
+
+  > 又是极狐没烦恼的一天~
+
+  Never mind. It's just a pun. 😛
+
+  ![My ARCFOX aT5.](arcfox-at5.jpeg)
+
 ## 🥑 Other Gear
 
 - Chargers and a power bank: [Anker](https://www.anker.com).
@@ -110,8 +121,6 @@ I used to build this site on my own with [Tailwind CSS](https://tailwindcss.com)
 - Mice: [Logitech](https://www.logitech.com).
 - I chose [TGIF T0](https://www.tgif-official.com) for my ergonomic gaming chair.
 - I listen to Bose QCU sometimes and AirPods Pro 2 when on the go.
-- I've got an XDS mountain bike. 🚴‍♂️
 
 [^1]: E.g., [卓易通](https://www.droitong.com).
-[^2]: It should be more accurate to use the word "led".
-[^3]: ReSharper C++ and Rider are excluded.
+[^2]: ReSharper C++ and Rider are excluded.
