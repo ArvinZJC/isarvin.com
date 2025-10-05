@@ -244,4 +244,5 @@ hugo.linux
 /.hugo_build.lock
 
 ## Others.
+package-lock.json
 static/
