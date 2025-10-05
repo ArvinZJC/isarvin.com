@@ -87,9 +87,9 @@ An Apple Watch Series 8 (GPS, 45mm).
 - [Apifox](https://apifox.com) is an API platform I use for debugging and some of QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I would leave no comment. It's generally good for teamwork.
 - Any other stuff? So much, but this might be worthy of attention. **Due to limited free time I would spend currently on my repos**, my personal blog and portfolio could be impossible without [Cloudflare](https://www.cloudflare.com), [Hugo](https://github.com/gohugoio/hugo), [Hugo Blox Builder](https://github.com/HugoBlox/hugo-blox-builder), [Vercel](https://vercel.com), as well as [giscus](https://github.com/giscus/giscus). ❤️
 
-> [!TIP]
->
-> I used to build this site on my own with [Tailwind CSS](https://tailwindcss.com), [Vite](https://vite.dev), and [Vue.js](https://vuejs.org). Unfortunately, I abandoned this way and archived [the related repo](https://github.com/ArvinZJC/isarvin).
+  > [!TIP]
+  >
+  > I used to build this site on my own with [Tailwind CSS](https://tailwindcss.com), [Vite](https://vite.dev), and [Vue.js](https://vuejs.org). Unfortunately, I abandoned this way and archived [the related repo](https://github.com/ArvinZJC/isarvin).
 
 ## 🚀 Productivity
 
