@@ -1,27 +1,37 @@
 <script>
-  let bg = document.getElementById("page-bg");
+  const bg = document.getElementById("page-bg");
   bg.style.setProperty("will-change", "filter", "");
   let hue = 0;
   let isDark = document.documentElement.classList.contains("dark");
+
+  function sendMessage(message) {
+    const iframe = document.querySelector("iframe.giscus-frame");
+
+    if (!iframe) return;
+
+    iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
+  }
+
+  function handleMessage(event) {
+    if (event.origin !== "https://giscus.app") return;
+    if (!(typeof event.data === "object" && event.data.giscus)) return;
+
+    const giscusData = event.data.giscus;
+
+    if ("resizeHeight" in giscusData)
+      sendMessage({
+        setConfig: {
+          theme: isDark ? "dark" : "light",
+        },
+      });
+  }
+
+  window.addEventListener("message", handleMessage);
 
   // Listen for manual theme changes.
   document.addEventListener("hbThemeChange", (e) => {
     isDark = e.detail.isDarkTheme();
     console.debug("Theme changed manually - isDarkTheme? " + isDark);
-
-    function sendMessage(message) {
-      let iframe = document.querySelector("iframe.giscus-frame");
-
-      if (!iframe) {
-        return;
-      }
-
-      iframe.contentWindow.postMessage(
-        { giscus: message },
-        "https://giscus.app"
-      );
-    }
-
     sendMessage({
       setConfig: {
         theme: isDark ? "dark" : "light",
@@ -37,9 +47,8 @@
       if (
         "wc-color-theme" in localStorage ||
         window.hbb.defaultTheme !== "system"
-      ) {
+      )
         return;
-      }
 
       isDark = matches;
       console.debug("Theme changed by system - isDarkTheme? " + isDark);
@@ -48,14 +57,12 @@
   setInterval(function () {
     hue = (hue + 1) % 360;
 
-    if (isDark) {
+    if (isDark)
       bg.style.setProperty(
         "filter",
         "hue-rotate(" + hue + "deg) invert(1) saturate(2)",
         ""
       );
-    } else {
-      bg.style.setProperty("filter", "hue-rotate(" + hue + "deg)", "");
-    }
+    else bg.style.setProperty("filter", "hue-rotate(" + hue + "deg)", "");
   }, 5000 / 360);
 </script>
