@@ -14,7 +14,7 @@ commentable: true
 # Set `preview_only` to `true` to just use the image for thumbnails.
 image:
   placement: 1
-  caption: "Shot at home on 4 Feb, 2025."
+  caption: "Shot at home on 8 Nov, 2025."
   focal_point: "Smart"
   preview_only: false
   alt_text: "My workspace at home."
@@ -27,19 +27,19 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 
 ## 💎 Devices & Envs
 
-### HarmonyOS NEXT 5
+### HarmonyOS 6
 
 A HUAWEI Pura 70 with 12GB RAM and 256GB storage.
 
-Due to no AOSP core, Android apps cannot run on a HarmonyOS NEXT device unless a HarmonyOS native app leveraging container-based features[^1] is installed. I'm not for such native app because it can lead to compatibility issues, and I consider it a poison for ecosystem dev. Anyway, we'll see. 🕵
+Due to no AOSP core, Android apps cannot run on this device unless a HarmonyOS native app leveraging container-based features[^1] is installed. I'm not for such native app because it can lead to compatibility issues, and I consider it a poison for ecosystem dev. Anyway, we'll see. 🕵
 
 ### Linux Distros
 
-- An ECS instance with `s3.2xlarge.2` running openEuler 24.09 on [China Telecom Cloud Computing](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
-- An AArch64 VM running Fedora Workstation 42 on [Parallels Desktop](https://www.parallels.com).
+- An ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP2 on [China Telecom Cloud Computing](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
+- An AArch64 VM running Fedora Workstation 43 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
 - A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
-- Several Docker containers for work running CTyunOS 2.0.1 on [my MBP](#macos-sequoia). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
+- Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-sequoia). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
 
 ### Windows 11 25H2
 
@@ -116,10 +116,10 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 ## 🥑 Other Gear
 
-- Chargers and a power bank: [Anker](https://www.anker.com).
+- Chargers and power banks: [Anker](https://www.anker.com) and [CUKTECH](https://cuktech.com.cn/).
 - Keyboards: [Varmilo](https://varmilo.com).
 - Mice: [Logitech](https://www.logitech.com).
-- I chose [TGIF T0](https://www.tgif-official.com) for my ergonomic gaming chair.
+- I chose [TGIF T0](https://www.tgif-official.com) for my ergonomic gaming chairs.
 - I listen to Bose QCU sometimes and AirPods Pro 2 when on the go.
 
 [^1]: E.g., [卓易通](https://www.droitong.com).
