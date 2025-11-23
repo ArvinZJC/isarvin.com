@@ -14,6 +14,7 @@ reading_time: false
 ## 💡 Patents
 
 - CN116339761B ([Google Patents](https://patents.google.com/patent/CN116339761B) / [PatentGuru](https://www.patentguru.com/CN116339761B)): 一种自动化构建镜像模板的方法、系统、存储介质、设备
+- CN119697181A ([Google Patents](https://patents.google.com/patent/CN119697181A) / [Baiten](https://www.baiten.cn/so/CN202411644426.0.html)): 一种云主机管理方法、装置、电子设备及可读介质
 
 ## 🧩 Unsorted
 
