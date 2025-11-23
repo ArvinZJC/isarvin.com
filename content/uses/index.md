@@ -39,7 +39,7 @@ Due to no AOSP core, Android apps cannot run on this device unless a HarmonyOS n
 - An AArch64 VM running Fedora Workstation 43 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
 - A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
-- Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-sequoia). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
+- Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
 
 ### Windows 11 25H2
 
