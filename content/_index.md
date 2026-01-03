@@ -12,9 +12,15 @@ design:
 sections:
   - block: resume-biography
     content:
-      # The user's folder name in `content/authors/`.
-      username: admin
+      text: |
+        Arvin Zhao (赵吉忱) claims to be a top expert in cloud computing, but in reality, he is just an introverted geek with great passion.
+        
+        Alumni [@UofG](https://www.gla.ac.uk)
+      # Author slug (data/authors/<slug>.yaml)
+      username: me
     design:
+      spacing:
+        padding: [0, 0, 0, 0]
       biography:
         style: "text-align: justify; font-size: 0.8em;"
       # Avatar customization

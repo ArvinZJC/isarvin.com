@@ -3,7 +3,8 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: Arvin Zhao # Website name.
+# Website name (set in params.yaml under hugoblox.branding.name)
+title: ""
 baseURL: "https://www.isarvin.com" # Website URL.
 
 ############################
@@ -22,6 +23,7 @@ cascade:
       path: /blog/**
       kind: page
     pager: true
+    editable: true
     hide_date: false
     show_date_updated: true
     reading_time: true
@@ -51,7 +53,7 @@ pagination:
 enableEmoji: true
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
-ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$]
+ignoreFiles: [".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
 disableAliases: true
 outputs:
   home: [HTML, RSS, backlinks]

@@ -2,6 +2,7 @@
 title: Uses
 date: 2025-02-01
 pager: false
+editable: true
 hide_date: true
 reading_time: false
 commentable: true
@@ -14,7 +15,7 @@ commentable: true
 # Set `preview_only` to `true` to just use the image for thumbnails.
 image:
   placement: 1
-  caption: "Shot at home on 8 Nov, 2025."
+  caption: "Shot at home on 8 Nov 2025."
   focal_point: "Smart"
   preview_only: false
   alt_text: "My workspace at home."

@@ -6,8 +6,17 @@
   }
 }
 
-.hb-card-title {
-  align-items: center;
+.bg-white\/50 {
+  background-color: color-mix(in srgb, #fff 50%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-white) 50%, transparent);
+  }
+}
+
+.dark .hb-steps h3::before {
+  background-color: var(--color-hb-dark);
+  border-color: var(--color-slate-300);
+  color: var(--color-neutral-200);
 }
 
 .page-footer {
@@ -18,4 +27,5 @@
 .resume-biography {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  padding-top: 6rem;
 }

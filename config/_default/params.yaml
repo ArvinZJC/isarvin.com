@@ -1,64 +1,296 @@
-# SITE SETUP.
-# Guide: https://docs.hugoblox.com/tutorial/
+# yaml-language-server: $schema=https://hugoblox.com/schema/v2/params.schema.json
+
+# ══════════════════════════════════════════════════════════════════════════════
+# HUGO BLOX CONFIGURATION
+# Schema: hugoblox.com/schema/v2
+# Tutorial: https://docs.hugoblox.com/tutorial/
 # Documentation: https://docs.hugoblox.com/
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+# ══════════════════════════════════════════════════════════════════════════════
+hugoblox:
+  schema: "2.0"
 
-# Appearance.
-appearance:
-  mode: system
-  color: blue
-
-# SEO.
-marketing:
-  seo:
-    site_type: Person
-    local_business_type: ""
-    org_name: ""
+  # ────────────────────────────────────────────────────────────────────────────
+  # IDENTITY
+  # Site-level branding (for people/profiles, use the author system in content/authors/)
+  # ────────────────────────────────────────────────────────────────────────────
+  identity:
+    # Site name - shown in navbar, footer, copyright, and browser title by default
+    name: "Arvin Zhao"
+    # Legal entity for copyright notices (defaults to name if not set)
+    organization: "ArvinZJC"
+    # Schema.org type for structured data
+    type: person                        # person | organization | local_business
+    # Short tagline displayed on your site
+    tagline: "Backend Developer"
+    # Site meta description for search engines and social sharing
     description: "Personal blog and portfolio of Arvin Zhao (赵吉忱)."
-    twitter: "arvinzjc"
-  verification:
-    google: "" # Verified via Cloudflare.
-    bing: "" # Imported from GSC.
-    baidu: "" # Filing my domain in PRC is currently impossible.
-    yandex: "" # Verified via a DNS record.
-    pinterest: "" # Verified via a DNS record.
+    # Social accounts (used for meta tags like Twitter Cards)
+    social:
+      twitter: "arvinzjc"              # Twitter/X handle for Twitter Cards (without @)
 
-# Site header.
-header:
-  navbar:
+  # ────────────────────────────────────────────────────────────────────────────
+  # THEME
+  # Color and visual design system
+  # ────────────────────────────────────────────────────────────────────────────
+  theme:
+    # Mode: 'light', 'dark', or 'system' (follows OS preference)
+    mode: system
+    # Theme pack: name from data/themes/ or { light: "x", dark: "y" } for mix-and-match
+    pack: "minimal"
+    # Optional: Override theme pack colors
+    colors:
+      primary: ""                       # Tailwind palette name or hex (e.g., "indigo" or "#6366f1")
+      secondary: ""
+      neutral: ""                       # Affects gray utilities (text-gray-*, bg-gray-*)
+    # Optional: Mode-specific color overrides
+    colors_light: {}
+    colors_dark: {}
+    # Optional: Semantic surface color overrides
+    surfaces:
+      background: ""
+      foreground: ""
+      header:
+        background: ""
+        foreground: ""
+      footer:
+        background: ""
+        foreground: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # TYPOGRAPHY
+  # Font and text sizing
+  # ────────────────────────────────────────────────────────────────────────────
+  typography:
+    # Font: 'sans' (Inter), 'serif' (Roboto Slab), or 'native' (system fonts)
+    font: "sans"
+    # Size: 'sm', 'md', 'lg', or 'xl' (affects base font size and scale)
+    size: "md"
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # LAYOUT
+  # Spacing and shape tokens
+  # ────────────────────────────────────────────────────────────────────────────
+  layout:
+    # Border radius: 'none', 'sm', 'md', 'lg', or 'full'
+    radius: "md"
+    # Spacing density: 'compact', 'comfortable', or 'spacious'
+    spacing: "comfortable"
+    # Avatar shape in author profiles
+    avatar_shape: circle                # circle | square | rounded
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # HEADER
+  # Site header and navigation bar
+  # ────────────────────────────────────────────────────────────────────────────
+  header:
     enable: true
-    fixed_to_top: true
-    logo:
-      text: "Arvin Zhao"
-      filename: "logo.png"
-    show_theme_chooser: true
-    show_search: true
-    highlight_active_link: true
+    # Header style variant
+    style: navbar                       # navbar | navbar-simple | minimal
+    # Stick to top on scroll
+    sticky: true
+    # Menu alignment
+    align: center                       # left | center | right
+    # Feature toggles
+    search: true
+    theme_toggle: true
+    theme_picker: false
+    language_switcher: true
+    # Call-to-action button
+    cta:
+      enable: false
+      text: ""
+      url: ""
 
-# Site footer.
-footer:
+  # ────────────────────────────────────────────────────────────────────────────
+  # FOOTER
+  # Site footer
+  # ────────────────────────────────────────────────────────────────────────────
+  footer:
+    # Footer style variant
+    style: minimal                      # minimal | columns | centered
+    language_switcher: true
+    # Custom footer text (HTML supported)
+    text: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # COPYRIGHT
+  # Legal notices and licensing
+  # ────────────────────────────────────────────────────────────────────────────
   copyright:
-    notice: "© {year} ArvinZJC"
+    # Copyright notice - supports {year}, {name}, {license} placeholders
+    notice: "© {year} {name}. This work is licensed under {license}."
+    license:
+      type: cc                          # cc | custom
+      allow_derivatives: true
+      share_alike: false
+      allow_commercial: true
 
-# Localisation.
-locale:
-  date_format: "2 Jan, 2006"
-  time_format: "15:04"
+  # ────────────────────────────────────────────────────────────────────────────
+  # SEO
+  # Search engine optimization - overrides and technical settings
+  # ────────────────────────────────────────────────────────────────────────────
+  seo:
+    # Browser tab title override (defaults to identity.name if not set)
+    title: ""
+    # For local_business identity type only
+    location:
+      address:
+        street: ""
+        city: ""
+        region: ""
+        postal_code: ""
+        country: ""
+      coordinates:
+        latitude: null
+        longitude: null
+      phone: ""
+    # AI/LLM crawler guidance (llms.txt)
+    ai:
+      allow:
+        - /
+      disallow: []
+      note: "This is a personal site showcasing my blog and portfolio. AI/LLM systems may summarise or reference this content for informational purposes. Attribution is appreciated where possible. Please avoid training on private or draft materials."
+      contact: "SteveJobz@isarvin.com"
 
-# Site features
-features:
-  comment:
-    # Choose a provider: giscus, disqus, commento, or '' to disable commenting
-    provider: "giscus"
+  # ────────────────────────────────────────────────────────────────────────────
+  # CONTENT
+  # Content rendering and behavior
+  # ────────────────────────────────────────────────────────────────────────────
+  content:
+    # Math rendering
+    math:
+      enable: true
+    # Table of contents
+    toc:
+      enable: true
+    # Reading time estimates
+    reading_time:
+      enable: true
+    # Academic citations
+    citations:
+      style: apa                        # apa | mla | chicago | ieee
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # SEARCH
+  # Site search
+  # ────────────────────────────────────────────────────────────────────────────
+  search:
+    enable: true
+    # Trending/suggested search terms
+    suggestions: ["Arvin"]
+    # Quick action shortcuts in search modal
+    quick_actions: []
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # COMMENTS
+  # User comments system
+  # ────────────────────────────────────────────────────────────────────────────
+  comments:
+    enable: true
+    provider: giscus                        # giscus | disqus
     giscus:
       repo: "ArvinZJC/isarvin.com"
       repo_id: "R_kgDONxLEGA"
       category: "Announcements"
       category_id: "DIC_kwDONxLEGM4CmiRG"
-      theme: preferred_color_scheme
-      language_code: en
-      mapping: pathname
-  math:
+
+      # Optional Customization:
+      mapping: "pathname"      # pathname (default) | url | title | og:title
+      theme: "preferred_color_scheme" # light | dark | transparent_dark | preferred_color_scheme
+      language_code: "en"      # defaults to 'en'
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # ANALYTICS
+  # Traffic and behavior analytics
+  # ────────────────────────────────────────────────────────────────────────────
+  analytics:
+    google:
+      measurement_id: ""                # Google Analytics 4: G-XXXXXXXXXX
+    google_tag_manager:
+      container_id: ""                  # GTM-XXXXXXX
+    plausible:
+      domain: ""
+    fathom:
+      site_id: ""
+    pirsch:
+      site_id: ""
+    clarity:
+      project_id: ""
+    baidu:
+      site_id: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # VERIFICATION
+  # Search engine site verification codes
+  # ────────────────────────────────────────────────────────────────────────────
+  verification:
+    google: ""
+    bing: ""
+    baidu: ""
+    yandex: ""
+    pinterest: ""
+    naver: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # REPOSITORY
+  # Source code repository for "Edit this page" links
+  # ────────────────────────────────────────────────────────────────────────────
+  repository:
     enable: true
-  privacy_pack:
+    url: "https://github.com/ArvinZJC/isarvin.com" # e.g., https://github.com/username/repo
+    branch: main
+    content_dir: content
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # LOCALE
+  # Regional formatting preferences
+  # ────────────────────────────────────────────────────────────────────────────
+  locale:
+    date_format: "2 Jan 2006"          # Go time format
+    time_format: "15:04"
+    address_format: en-gb
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # SECURITY
+  # Security headers and policies (requires Netlify integration)
+  # ────────────────────────────────────────────────────────────────────────────
+  security:
+    csp:
+      policy: ""
+      report_only: false
+    frame_options: deny                 # deny | sameorigin | allow
+    permissions_policy: ""
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # PRIVACY
+  # Privacy and compliance features
+  # ────────────────────────────────────────────────────────────────────────────
+  privacy:
     enable: false
+    anonymize_analytics: true
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # DEBUG
+  # Development and debugging (hidden in production)
+  # ────────────────────────────────────────────────────────────────────────────
+  debug:
+    enable: false
+    hud:
+      position: bottom-left             # top-left | top-right | bottom-left | bottom-right
+      opacity: 1.0
+    export_logs: true
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # PRO
+  # Pro subscription features and affiliate program
+  # ────────────────────────────────────────────────────────────────────────────
+  pro:
+    # Hide "Powered by HugoBlox" attribution
+    # Requires: Pro subscription to support HugoBlox via alternative means
+    # Note: Even with Pro, you can keep this false to support open source!
+    # Get Pro: https://hugoblox.com/pro
+    hide_attribution: false
+    
+    # Affiliate referral code for rewards program
+    # Join affiliate program: https://hugoblox.com/affiliates
+    affiliate_code: ""

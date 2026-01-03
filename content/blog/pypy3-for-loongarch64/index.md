@@ -1,15 +1,15 @@
 ---
-title: "Building PyPy 3 from Source on a LoongArch64 Platform"
-summary: "Unofficial LoongArch64 support for PyPy 3 without JIT."
+title: Building PyPy 3 from Source on a LoongArch64 Platform
+summary: Unofficial LoongArch64 support for PyPy 3 without JIT.
 date: 2025-02-23
 authors:
-  - admin
+  - me
 categories:
-  - "Year 2025"
+  - Year 2025
   - Practice
   - Tutorial
 tags:
-  - "PyPy 3"
+  - PyPy 3
   - Compilation
   - LoongArch64
   - PyPy
@@ -22,10 +22,10 @@ tags:
 # Set `preview_only` to `true` to just use the image for thumbnails.
 image:
   placement: 1
-  caption: "Reproduced with Loongson and PyPy logos."
-  focal_point: "Center"
+  caption: Reproduced with Loongson and PyPy logos.
+  focal_point: Center
   preview_only: true
-  alt_text: "Loongson and PyPy logos."
+  alt_text: Loongson and PyPy logos.
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 

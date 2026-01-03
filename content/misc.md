@@ -3,8 +3,10 @@ title: Miscellaneous
 summary: "Misc content."
 date: 2025-02-01
 pager: false
+editable: true
 hide_date: true
 reading_time: false
+commentable: true
 ---
 
 > Only the thought that we put into life is valuable.

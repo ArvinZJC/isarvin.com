@@ -1,15 +1,15 @@
 ---
-title: "A Starter for Python 2 Code Formatting with Black"
-summary: "How to install Black to enable formatting Python 2 code?"
+title: A Starter for Python 2 Code Formatting with Black
+summary: How to install Black to enable formatting Python 2 code?
 date: 2025-02-09
 authors:
-  - admin
+  - me
 categories:
-  - "Year 2025"
+  - Year 2025
   - Tutorial
 tags:
-  - "Code Formatter"
-  - "Python 2"
+  - Code Formatter
+  - Python 2
   - Black
   - Python
 
@@ -21,10 +21,10 @@ tags:
 # Set `preview_only` to `true` to just use the image for thumbnails.
 image:
   placement: 1
-  caption: "Reproduced with a Black logo."
-  focal_point: "Center"
+  caption: Reproduced with a Black logo.
+  focal_point: Center
   preview_only: true
-  alt_text: "Black logo."
+  alt_text: Black logo.
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
