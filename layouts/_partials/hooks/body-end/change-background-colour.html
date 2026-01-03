@@ -1,6 +1,4 @@
 <script>
-  const bg = document.getElementById("page-bg");
-  bg.style.setProperty("will-change", "filter", "");
   let hue = 0;
   let isDark = document.documentElement.classList.contains("dark");
 
@@ -54,15 +52,22 @@
       console.debug("Theme changed by system - isDarkTheme? " + isDark);
     });
 
-  setInterval(function () {
-    hue = (hue + 1) % 360;
+  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    const bg = document.getElementById("page-bg");
 
-    if (isDark)
-      bg.style.setProperty(
-        "filter",
-        "hue-rotate(" + hue + "deg) invert(1) saturate(2)",
-        ""
-      );
-    else bg.style.setProperty("filter", "hue-rotate(" + hue + "deg)", "");
-  }, 5000 / 360);
+    if (bg) {
+      bg.style.setProperty("will-change", "filter", "");
+      setInterval(function () {
+        hue = (hue + 1) % 360;
+
+        if (isDark)
+          bg.style.setProperty(
+            "filter",
+            "hue-rotate(" + hue + "deg) invert(1) saturate(2)",
+            ""
+          );
+        else bg.style.setProperty("filter", "hue-rotate(" + hue + "deg)", "");
+      }, 5000 / 360);
+    }
+  }
 </script>
