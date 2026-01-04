@@ -28,19 +28,17 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 
 ## 💎 Devices & Envs
 
-### HarmonyOS 6
-
-A HUAWEI Pura 70 with 12GB RAM and 256GB storage.
-
-Due to no AOSP core, Android apps cannot run on this device unless a HarmonyOS native app leveraging container-based features[^1] is installed. I'm not for such native app because it can lead to compatibility issues, and I consider it a poison for ecosystem dev. Anyway, we'll see. 🕵
-
 ### Linux Distros
 
-- An ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP2 on [China Telecom Cloud Computing](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
+- An ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP2 on [eSurfing Cloud](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
 - An AArch64 VM running Fedora Workstation 43 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
 - A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 - Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
+
+### OriginOS 6
+
+A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built upon Android 16. I use this phone as a spare in place of a HUAWEI Pura 70 running HarmonyOS 6, where Android apps cannot run due to no AOSP core unless a HarmonyOS native app leveraging container-based features[^1] is installed.
 
 ### Windows 11 25H2
 
@@ -75,7 +73,8 @@ An Apple Watch Series 8 (GPS, 45mm).
 ## 👨‍💻 Dev
 
 - [Visual Studio Code](https://code.visualstudio.com) has been my primary editor for many years.
-  - I know VS Code is built on top of [Electron](https://www.electronjs.org). I used this framework to develop a cross-platform desktop app once. Tbh, it was not bad, but I indeed failed to sort out a simple way to make it "lightweight". Every framework can be arguable, right?
+  
+  - I know VS Code is built on top of [Electron](https://www.electronjs.org). I used this framework to develop a cross-platform desktop app once. Tbh, it was not bad, but I indeed failed to sort out a simple way to make it "lightweight" in limited time. Every framework can be arguable, right?
   - I explored [Sublime Text](https://www.sublimetext.com) and [Zed](https://zed.dev). They were gorgeous. Perhaps I may switch to another editor one day? 🤔
 - I use the following IDEs for their advanced/convenient features, or sometimes as a part of collaborative work env settings on relatively large codebases.
 
@@ -83,10 +82,11 @@ An Apple Watch Series 8 (GPS, 45mm).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
   - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
 
+- I get used to using [GitHub Copilot](https://github.com/copilot) for code completion and AI-assisted programming.
 - To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
 - I prefer [WindTerm](https://github.com/kingToolbox/WindTerm) and [Xterminal](https://www.xterminal.cn) as my terminals for all of my local envs. [Xshell](https://www.netsarang.com/en/xshell) is installed on Windows as a requirement to access work envs.
 - [Apifox](https://apifox.com) is an API platform I use for debugging and some of QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I would leave no comment. It's generally good for teamwork.
-- Any other stuff? So much, but this might be worthy of attention. **Due to limited free time I would spend currently on my repos**, my personal blog and portfolio could be impossible without [Cloudflare](https://www.cloudflare.com), [Hugo](https://github.com/gohugoio/hugo), [Hugo Blox Builder](https://github.com/HugoBlox/hugo-blox-builder), [Vercel](https://vercel.com), as well as [giscus](https://github.com/giscus/giscus). ❤️
+- Any other stuff? So much, but this might be worthy of attention. **Due to limited free time I would spend currently on my repos**, my personal blog and portfolio could be impossible without [Cloudflare](https://www.cloudflare.com), [Hugo](https://github.com/gohugoio/hugo), [HugoBlox Kit](https://github.com/HugoBlox/kit), [Vercel](https://vercel.com), as well as [giscus](https://github.com/giscus/giscus). ❤️
 
   > [!TIP]
   >
@@ -94,6 +94,7 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 ## 🚀 Productivity
 
+- [GhatGPT](https://chatgpt.com) and [Doubao](https://www.doubao.com/chat). In the age of AI agents, life is being reshaped. I also tried [DeepSeek](https://chat.deepseek.com), [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), [Qwen](https://www.qianwen.com), etc. They were surprising.
 - [Microsoft Edge](https://www.microsoft.com/edge) and [Safari](https://www.apple.com/safari).
 - [Notion](https://www.notion.com) for note-taking and task management (more like a replacement for to-do list apps? 🤪).
 - [Tencent Docs](https://docs.qq.com). I would highlight its Smart Canvas and Smart Sheet despite the fact that it's usually an alternative for me to share online docs with my colleagues.
@@ -121,7 +122,7 @@ An Apple Watch Series 8 (GPS, 45mm).
 - Keyboards: [Varmilo](https://varmilo.com).
 - Mice: [Logitech](https://www.logitech.com).
 - I chose [TGIF T0](https://www.tgif-official.com) for my ergonomic gaming chairs.
-- I listen to Bose QCU sometimes and AirPods Pro 2 when on the go.
+- I listen to AirPods Pro 2 when on the go.
 
 [^1]: E.g., [卓易通](https://www.droitong.com).
 [^2]: ReSharper C++ and Rider are excluded.
