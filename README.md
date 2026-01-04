@@ -5,4 +5,4 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ArvinZJC/isarvin.com)
 [![GitHub](https://img.shields.io/github/license/ArvinZJC/isarvin.com)](./LICENCE)
 
-Yes, this is Arvin. Here is my personal blog and portfolio, made with [Hugo Blox](https://hugoblox.com/).
+Yes, this is Arvin. Here is my personal blog and portfolio, made with [HugoBlox](https://hugoblox.com).
