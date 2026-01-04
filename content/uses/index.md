@@ -30,7 +30,7 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 
 ### Linux Distros
 
-- An ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP2 on [eSurfing Cloud](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
+- An ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP3 on [eSurfing Cloud](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
 - An AArch64 VM running Fedora Workstation 43 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
 - A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
