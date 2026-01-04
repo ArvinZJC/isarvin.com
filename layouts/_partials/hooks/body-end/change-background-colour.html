@@ -50,9 +50,17 @@
 
       isDark = matches;
       console.debug("Theme changed by system - isDarkTheme? " + isDark);
+      sendMessage({
+        setConfig: {
+          theme: isDark ? "dark" : "light",
+        },
+      });
     });
 
-  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+  if (
+    window.location.pathname === "/" ||
+    window.location.pathname === "/index.html"
+  ) {
     const bg = document.getElementById("page-bg");
 
     if (bg) {
