@@ -8,6 +8,7 @@ categories:
   - Year 2025
   - General
 tags:
+  - New Year
   - Get Started
 
 # Cover image.
