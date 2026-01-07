@@ -29,7 +29,7 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-> "When we are born, we cry that we are come to this great stage of fools."
+> When we are born, we cry that we are come to this great stage of fools.
 
 The year 2026 kicked off with a bold statement: "What if time... just stopped working?"
 
