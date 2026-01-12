@@ -20,4 +20,4 @@ commentable: true
 
 ## 🧩 Unsorted
 
-- [镜维 JSON 模式配置生成工具](https://glance-at-tools.isarvin.com)
+- [镜维镜像上传 JSON 模式配置生成工具](https://glance-at-tools.isarvin.com)
