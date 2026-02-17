@@ -82,7 +82,7 @@ An Apple Watch Series 8 (GPS, 45mm).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
   - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
 
-- I get used to using [GitHub Copilot](https://github.com/copilot) and [Codex](https://chatgpt.com/codex) for AI-assisted programming.
+- I get used to using [Codex](https://chatgpt.com/codex) and [GitHub Copilot](https://github.com/copilot) for AI-assisted programming.
 - To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
 - I prefer [WindTerm](https://github.com/kingToolbox/WindTerm) and [Xterminal](https://www.xterminal.cn) as my terminals for all of my local envs. [Xshell](https://www.netsarang.com/en/xshell) is installed on Windows as a requirement to access work envs.
 - [Apifox](https://apifox.com) is an API platform I use for debugging and some of QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I would leave no comment. It's generally good for teamwork.
