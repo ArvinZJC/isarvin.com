@@ -82,7 +82,7 @@ An Apple Watch Series 8 (GPS, 45mm).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
   - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
 
-- I get used to using [GitHub Copilot](https://github.com/copilot) for code completion and AI-assisted programming.
+- I get used to using [GitHub Copilot](https://github.com/copilot) and [Codex](https://chatgpt.com/codex) for AI-assisted programming.
 - To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
 - I prefer [WindTerm](https://github.com/kingToolbox/WindTerm) and [Xterminal](https://www.xterminal.cn) as my terminals for all of my local envs. [Xshell](https://www.netsarang.com/en/xshell) is installed on Windows as a requirement to access work envs.
 - [Apifox](https://apifox.com) is an API platform I use for debugging and some of QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I would leave no comment. It's generally good for teamwork.
@@ -94,7 +94,7 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 ## 🚀 Productivity
 
-- [GhatGPT](https://chatgpt.com) and [Doubao](https://www.doubao.com/chat). In the age of AI agents, life is being reshaped. I also tried [DeepSeek](https://chat.deepseek.com), [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), [Qwen](https://www.qianwen.com), etc. They were surprising.
+- [Doubao](https://www.doubao.com/chat), [GhatGPT](https://chatgpt.com), [Qwen](https://www.qianwen.com), and [Yuanbao](https://yuanbao.tencent.com/chat). In the age of AI agents, life is being reshaped. I also tried [Claude](https://claude.ai), [DeepSeek](https://chat.deepseek.com), [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), etc. They were surprising.
 - [Microsoft Edge](https://www.microsoft.com/edge) and [Safari](https://www.apple.com/safari).
 - [Notion](https://www.notion.com) for note-taking and task management (more like a replacement for to-do list apps? 🤪).
 - [Tencent Docs](https://docs.qq.com). I would highlight its Smart Canvas and Smart Sheet despite the fact that it's usually an alternative for me to share online docs with my colleagues.
