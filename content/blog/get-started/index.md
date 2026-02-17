@@ -8,6 +8,7 @@ categories:
   - Year 2025
   - General
 tags:
+  - Spring Festival
   - New Year
   - Get Started
 
