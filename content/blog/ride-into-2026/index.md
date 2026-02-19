@@ -29,17 +29,17 @@ image:
 
 Happy Lunar New Year, and welcome to the Year of the Horse.
 
-In many ways, this feels like the right symbol for our time. The pace of technological change — especially in AI — has accelerated dramatically. Knowledge ages faster than ever, and skills that once lasted for years can feel temporary within months.
+In many ways, this feels like the right symbol for our time. The pace of technological change, especially in AI, has accelerated dramatically. Knowledge ages faster than ever, and skills that once lasted for years can feel temporary within months.
 
 Living in this environment creates an unusual tension. I sometimes resent how quickly things move, how constant the need to learn has become. Yet at the same time, I feel a strong desire to keep learning, to grow, and not fall behind. It’s both inspiring and exhausting.
 
-It’s a funny contradiction — being excited about the future while also wishing it would slow down a little.
+It’s a funny contradiction - being excited about the future while also wishing it would slow down a little.
 
 There are moments when I feel motivated, and moments when I feel tired or unproductive. And perhaps that’s simply the human response to rapid progress. Technology accelerates, but people still need time to think, rest, and adapt.
 
 Maybe that’s the spirit of this year. Horses run fast, but they don’t sprint forever. So this year, I hope to keep moving forward, learn what I can, and forgive myself for not keeping up with everything.
 
-Anyway, happy New Year. May we all find our rhythm in a fast-moving world.
+Anyway, may we all find our rhythm in a fast-moving world.
 
 {{< cards >}}
   {{< card url="https://agent.qianwen.com/mos/c9972a8d2f6741418d4666a280174d79/942c7b82e4853b691293a9f298060d41" title="您有一份专属新年贺卡，请查收！" icon="envelope" >}}
