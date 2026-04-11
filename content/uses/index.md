@@ -3,7 +3,7 @@ title: Uses
 date: 2025-02-01
 pager: false
 editable: true
-hide_date: true
+show_date: false
 reading_time: false
 commentable: true
 
