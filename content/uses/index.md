@@ -94,7 +94,7 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 ## 🚀 Productivity
 
-- [Doubao](https://www.doubao.com/chat), [GhatGPT](https://chatgpt.com), [Qwen](https://www.qianwen.com), and [Yuanbao](https://yuanbao.tencent.com/chat). In the age of AI agents, life is being reshaped. I also tried [Claude](https://claude.ai), [DeepSeek](https://chat.deepseek.com), [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), etc. They were surprising.
+- [ChatGPT](https://chatgpt.com), [DeepSeek](https://chat.deepseek.com), [Doubao](https://www.doubao.com/chat), [Qwen](https://www.qianwen.com), and [Yuanbao](https://yuanbao.tencent.com/chat). In the age of AI agents, life is being reshaped. I also tried [Claude](https://claude.ai), [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), [Kimi](https://www.kimi.com), etc. They were surprising.
 - [Microsoft Edge](https://www.microsoft.com/edge) and [Safari](https://www.apple.com/safari).
 - [Notion](https://www.notion.com) for note-taking and task management (more like a replacement for to-do list apps? 🤪).
 - [Tencent Docs](https://docs.qq.com). I would highlight its Smart Canvas and Smart Sheet despite the fact that it's usually an alternative for me to share online docs with my colleagues.
