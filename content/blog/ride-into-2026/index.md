@@ -1,5 +1,5 @@
 ---
-title: "Riding into the Year of the Horse"
+title: Riding into the Year of the Horse
 summary: In 2026, I wonder how AI will continue changing the way I live, work, and learn.
 date: 2026-02-17
 authors:
