@@ -22,7 +22,7 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to build my own `/uses` page. I don't expect to include every specific in this page, yet it's sufficient for a spotlight on things I touch on a regular basis. Though, I don't reckon it captures much attention. It was fun anyway. 😼
+Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to build my own `/uses` page. I don't expect to include every detail here, but it should be enough to spotlight the things I touch on a regular basis. I doubt it will attract much attention, but it was fun anyway. 😼
 
 {{< toc mobile_only=true is_open=true >}}
 
@@ -31,26 +31,23 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 ### Linux Distros
 
 - An ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP3 on [eSurfing Cloud](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
-- An AArch64 VM running Fedora Workstation 43 on [Parallels Desktop](https://www.parallels.com).
+- An AArch64 VM running Fedora Workstation 44 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
 - A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
-- Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). You may find it large in size due to not much optimisation applied.
+- Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). It may look quite large because I have not spent much time optimising it.
 
 ### OriginOS 6
 
-A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built upon Android 16. I use this phone as a spare in place of a HUAWEI Pura 70 running HarmonyOS 6, where Android apps cannot run due to no AOSP core unless a HarmonyOS native app leveraging container-based features[^1] is installed.
+A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built on Android 16. I use this phone as a spare in place of a HUAWEI Pura 70 running HarmonyOS 6, where Android apps cannot run because there is no AOSP core unless a HarmonyOS-native app with container-based features[^1] is installed.
 
 ### Windows 11 25H2
 
-An AArch64 VM on [Parallels Desktop](https://www.parallels.com).
-
-### Windows Server 2022
-
-A cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
+- An AArch64 VM on [Parallels Desktop](https://www.parallels.com).
+- A cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 
 ### iOS 26
 
-An iPhone 15 Pro with 256GB storage.
+An iPhone 17 Pro with 512GB storage.
 
 ### iPadOS 26
 
@@ -60,11 +57,11 @@ There's a self-deprecating joke.
 
 > 买前生产力，买后爱奇艺。
 
-It means: Buy productivity before purchase, but end up watching iQIYI afterward. 🤷‍♂️
+It means: buy it for productivity, then end up watching iQIYI afterwards. 🤷‍♂️
 
 ### macOS Tahoe
 
-A 16-inch MacBook Pro with an Apple M2 Max chip, 64GB memory, and 1TB SSD storage. It cost a log of money. But who cares? <mark>As long as I love it, it's worth it.</mark> 🤓
+A 16-inch MacBook Pro with an Apple M2 Max chip, 64GB memory, and 1TB SSD storage. It cost a lot of money. But who cares? <mark>As long as I love it, it's worth it.</mark> 🤓
 
 ### watchOS 26
 
@@ -74,23 +71,23 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 - [Visual Studio Code](https://code.visualstudio.com) has been my primary editor for many years.
   
-  - I know VS Code is built on top of [Electron](https://www.electronjs.org). I used this framework to develop a cross-platform desktop app once. Tbh, it was not bad, but I indeed failed to sort out a simple way to make it "lightweight" in limited time. Every framework can be arguable, right?
+  - I know VS Code is built on top of [Electron](https://www.electronjs.org). I used this framework to develop a cross-platform desktop app once. Tbh, it was not bad, but I never found a simple way to make it "lightweight" in the time I had. Every framework has trade-offs, right?
   - I explored [Sublime Text](https://www.sublimetext.com) and [Zed](https://zed.dev). They were gorgeous. Perhaps I may switch to another editor one day? 🤔
-- I use the following IDEs for their advanced/convenient features, or sometimes as a part of collaborative work env settings on relatively large codebases.
+- I use the following IDEs for their advanced or convenient features, or sometimes because they are part of collaborative work environment settings on relatively large codebases.
 
   - Go: [GoLand](https://www.jetbrains.com/go).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
   - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
 
-- I get used to using [Codex](https://chatgpt.com/codex) and [GitHub Copilot](https://github.com/copilot) for AI-assisted programming.
+- I often use [Codex](https://chatgpt.com/codex) and [GitHub Copilot](https://github.com/copilot) for AI-assisted programming.
 - To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
-- I prefer [WindTerm](https://github.com/kingToolbox/WindTerm) and [Xterminal](https://www.xterminal.cn) as my terminals for all of my local envs. [Xshell](https://www.netsarang.com/en/xshell) is installed on Windows as a requirement to access work envs.
-- [Apifox](https://apifox.com) is an API platform I use for debugging and some of QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I would leave no comment. It's generally good for teamwork.
-- Any other stuff? So much, but this might be worthy of attention. **Due to limited free time I would spend currently on my repos**, my personal blog and portfolio could be impossible without [Cloudflare](https://www.cloudflare.com), [Hugo](https://github.com/gohugoio/hugo), [HugoBlox Kit](https://github.com/HugoBlox/kit), [Vercel](https://vercel.com), as well as [giscus](https://github.com/giscus/giscus). ❤️
+- I currently use [cmux](https://cmux.com) most often on macOS. I still recommend [WindTerm](https://github.com/kingToolbox/WindTerm), although I have mostly abandoned it myself. I use [Xterminal](https://www.xterminal.cn) from time to time, while [Xshell](https://www.netsarang.com/en/xshell) is still installed on Windows for accessing work environments.
+- [Apifox](https://apifox.com) is an API platform I use for debugging and some QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I will leave that without comment. It's generally good for teamwork.
+- Any other stuff? So much, but this might be worth mentioning. **Given the limited free time I can currently spend on my repos**, my personal blog and portfolio would be almost impossible without [Cloudflare](https://www.cloudflare.com), [Hugo](https://github.com/gohugoio/hugo), [HugoBlox Kit](https://github.com/HugoBlox/kit), [Vercel](https://vercel.com), and [giscus](https://github.com/giscus/giscus). ❤️
 
   > [!TIP]
   >
-  > I used to build this site on my own with [Tailwind CSS](https://tailwindcss.com), [Vite](https://vite.dev), and [Vue.js](https://vuejs.org). Unfortunately, I abandoned this way and archived [the related repo](https://github.com/ArvinZJC/isarvin).
+  > I used to build this site myself with [Tailwind CSS](https://tailwindcss.com), [Vite](https://vite.dev), and [Vue.js](https://vuejs.org). Unfortunately, I abandoned that approach and archived [the related repo](https://github.com/ArvinZJC/isarvin).
 
 ## 🚀 Productivity
 
