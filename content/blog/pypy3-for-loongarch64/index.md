@@ -29,12 +29,12 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-[PyPy's official documentation](https://doc.pypy.org/en/latest/build.html) provides general guidance on building from its source. Since PyPy does not support Linux LoongArch64 officially, I would like to share my practice to build a binary for this relatively new architecture.
+[PyPy's official documentation](https://doc.pypy.org/en/latest/build.html) provides general guidance on building from source. Since PyPy does not officially support Linux LoongArch64, I would like to share my own process for building a binary for this relatively new architecture.
 
 > [!NOTE]
 >
-> 1. The following is demonstrated with the root user in a LoongArch64 VM running Kylin Server V10 SP3. Adjustments may be required to match your env.
-> 2. PyPy 3.11 v7.3.18 is used. Other PyPy 3 versions can follow a similar way.
+> 1. The following is demonstrated as the root user in a LoongArch64 VM running Kylin Server V10 SP3. Adjustments may be required to match your environment.
+> 2. PyPy 3.11 v7.3.18 is used. Other PyPy 3 versions should follow a similar process.
 
 In particular, I should stress that this OS version leverages old-world[^1] technologies.
 
@@ -46,7 +46,7 @@ In particular, I should stress that this OS version leverages old-world[^1] tech
 
 As the official documentation states, the translation process is indeed RAM-hungry. So please take it seriously.
 
-The documentation also mentions that CPython/PyPy 2.7 is required. Building PyPy 2.7 for LoongArch64 can be unworthy. Hence, I'll just install Python 2.7 in my VM.
+The documentation also mentions that CPython/PyPy 2.7 is required. Building PyPy 2.7 for LoongArch64 is probably not worth the effort here, so I'll just install Python 2.7 in my VM.
 
 ```bash
 dnf install -y python2
@@ -65,7 +65,7 @@ tar -xvf pypy3.11-v7.3.18-src.tar.bz2
 
 > [!IMPORTANT]
 >
-> Patches must be applied to support LoongArch64. You may refer to [one of my GitHub repo](https://github.com/ArvinZJC/pypy/tree/dev).
+> Patches must be applied to support LoongArch64. See [one of my GitHub repositories](https://github.com/ArvinZJC/pypy/tree/dev) for an example.
 
 ### Install build-time dependencies
 
@@ -73,7 +73,7 @@ tar -xvf pypy3.11-v7.3.18-src.tar.bz2
 dnf install -y bzip2-devel expat-devel gc-devel gcc gdbm-devel libffi-devel make ncurses-devel openssl-devel pkgconfig python2-pip sqlite-devel tk-devel xz-devel zlib-devel
 ```
 
-CFFI is required. A Python 2.7 virtual env is suggested.
+CFFI is required. I suggest using a Python 2.7 virtual environment.
 
 ```bash
 # python2 -m pip -V
@@ -93,7 +93,7 @@ python ../../rpython/bin/rpython --opt=2
 deactivate
 ```
 
-It can be time-consuming. Please be patient. You can receive the following output for a successful build.
+It can be time-consuming. Please be patient. A successful build should end with output like this.
 
 ![FYI, the end of a successful build.](end-of-build.png)
 
@@ -107,7 +107,7 @@ After a successful build, you can also play with the compiled binary.
 
 ### Packaging
 
-Let me directly use the compiled binary to do packaging.
+I will use the compiled binary directly for packaging.
 
 ```bash
 # ./pypy3.11-c ../../pypy/tool/release/package.py --help
@@ -118,4 +118,4 @@ Let me directly use the compiled binary to do packaging.
 
 {{% /steps %}}
 
-[^1]: You may refer to [a post in LA UOSC](https://bbs.loongarch.org/d/89) for a brief intro on the so-called old/new world.
+[^1]: See [a post in LA UOSC](https://bbs.loongarch.org/d/89) for a brief intro on the so-called old/new world.

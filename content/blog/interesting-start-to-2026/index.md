@@ -9,7 +9,7 @@ categories:
   - General
 tags:
   - New Year
-  - Certificate Expiration
+  - Certificate Expiry
   - Technical Issues
   - Logi Options+ on macOS
   - League of Legends
@@ -53,12 +53,12 @@ done
 
 macOS, being very strict about reality, looks at the clock, looks at the certificate, and says: "This app lives in the past. I refuse." 🧐
 
-Until Logitech remembers how calendars work, the workaround is gloriously low-tech. Just tweak the system time to the time before 20:39 GMT on 6 Jan 2026. It may also be necessary to restart the Logi Plugin Service. After that, congratulations for successfully debugging time!
+Until Logitech remembers how calendars work, the workaround is gloriously low-tech. Just set the system time to before 20:39 GMT on 6 January 2026. It may also be necessary to restart the Logi Plugin Service. After that, congratulations: you have successfully debugged time!
 
 So here we are, early 2026:
 
 - Gamers defeated by certificates.
-- An utility app halted by GMT.
+- A utility app halted by GMT.
 - Engineers everywhere muttering: "How did this pass CI?"
 
 What's next? 😈

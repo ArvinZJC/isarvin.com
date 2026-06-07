@@ -1,6 +1,6 @@
 ---
 title: A Starter for Python 2 Code Formatting with Black
-summary: How to install Black to enable formatting Python 2 code?
+summary: How to install Black for formatting Python 2 code.
 date: 2025-02-09
 authors:
   - me
@@ -30,14 +30,14 @@ image:
 
 > [!CAUTION]
 >
-> Python 2.7 is the last major version in the 2.x series and [has reached its EOL on 1st Jan, 2020](https://www.python.org/doc/sunset-python-2). Please upgrade your Python if possible.
+> Python 2.7 is the last major version in the 2.x series and [reached EOL on 1 January 2020](https://www.python.org/doc/sunset-python-2). Please upgrade your Python if possible.
 
-Some of the projects I participate in still use Python 2.7. It can be an effort to install Black in this case without practice, so I'd like to show a series of steps as follows to save your time.
+Some of the projects I work on still use Python 2.7. Installing Black for that case can take a little fiddling, so I'd like to show the steps that worked for me.
 
 > [!NOTE]
 >
 > 1. [Running Black requires Python 3](https://github.com/psf/black/blob/21.12b0/docs/faq.md#does-black-support-python-2), even for formatting Python 2 code.
-> 2. The following assumes you have admin/root privileges and use _pip_ as your package installer. Adjustments may be required to match your env.
+> 2. The following assumes you have admin/root privileges and use _pip_ as your package installer. Adjustments may be required to match your environment.
 
 {{< toc mobile_only=true is_open=true >}}
 
@@ -45,7 +45,7 @@ Some of the projects I participate in still use Python 2.7. It can be an effort 
 
 ### Prerequisites: Python 3.6+ with a package installer
 
-I'm not to provide details on how to install Python 3 and ensure a package installer (e.g., _pip_). You might search the web if your env did not meet the prerequisites.
+I am not going to cover how to install Python 3 or set up a package installer such as _pip_. You may need to search the web if your environment does not meet the prerequisites.
 
 ```bash
 command -v python3
@@ -62,7 +62,7 @@ V21.12b0 is the last Black version with support for formatting Python 2 code. As
 
 `click <= 8.0.4` is also required. Otherwise, you may encounter an error saying `ImportError: cannot import name '_unicodefun' from 'click'` when running Black.
 
-The above `python2` key of Black means to install the optional dependency _typed-ast_, which [has been archived and no longer needed for most use cases](https://github.com/python/typed_ast/issues/179). If there was no matched pre-built binary package for your env, you might sometimes find it problematic to build one, complaining about either a Clang or a GCC issue. My suggestion is to remove `[python2]` as shown below. It generally works fine.
+The `python2` extra for Black installs the optional dependency _typed-ast_, which [has been archived and is no longer needed for most use cases](https://github.com/python/typed_ast/issues/179). If there is no matching pre-built binary package for your environment, building it can fail with a Clang or GCC error. My suggestion is to remove `[python2]` as shown below. It generally works fine.
 
 ```bash
 python3 -m pip install black==21.12b0 click==8.0.4
