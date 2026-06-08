@@ -1,6 +1,6 @@
 ---
 title: Disabling FaceFusion's NSFW Filter from Source Code
-summary: A tiny local patch that bypasses FaceFusion 3.6.1's content analyser gate.
+summary: A tiny local patch that bypasses FaceFusion's content analyser gate.
 date: 2026-06-07
 authors:
   - me
