@@ -35,7 +35,7 @@ This blog records a tiny local patch to disable that gate from source code.
 
 > [!CAUTION]
 >
-> This is for research on local model behaviour and source-code analysis only. It is not a suggestion to create illegal, non-consensual, or content involving anyone under 18. In short: lab coat on, age gate on, common sense on. The lab coat may be imaginary; the boundary is not.
+> I only do this for research on local model behaviour and source-code analysis, not for anything illegal, non-consensual, or prohibited for anyone under 18. In short: lab coat on, age gate on, common sense on. The lab coat may be imaginary; the age gate is not. 🧪
 
 > [!NOTE]
 >
@@ -173,6 +173,6 @@ In my checkout, the important shape is:
 
 This is the kind of modification I would keep as a local research patch, not something to casually publish as a default behaviour change. Filters can be annoying when they block legitimate experiments, but they also exist because image-generation and face-processing tools can be abused very easily.
 
-So yes, this is how I disabled the gate in source code. No, this is not a permission slip for creepy things. If the target is non-consensual, illegal, or involves anyone under 18, the correct patch is not in Python. It is in the user's judgement. Please upgrade that dependency first.
+So yes, this is how I disabled the gate in source code. No, this is not a permission slip for creepy things. If the target is non-consensual, illegal, or involves anyone under 18, the correct patch is not in Python. It is in the user's judgement. Please upgrade that dependency first. 🧠
 
 {{% /steps %}}
