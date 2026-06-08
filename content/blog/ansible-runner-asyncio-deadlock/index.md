@@ -1,0 +1,257 @@
+---
+title: Avoiding Random Ansible Runner Hangs in Async Multi-threaded Python
+summary: Replacing the PTY-backed pexpect spawn path with a subprocess-backed one.
+date: 2026-06-07
+authors:
+  - me
+categories:
+  - Year 2026
+  - Practice
+tags:
+  - ansible-runner
+  - pexpect
+  - asyncio
+  - Python 3
+  - Python
+
+# Cover image.
+# To use, place an image named `featured.jpg/png` in your page's folder.
+# Otherwise, specify the `filename` option to load an image from your `assets/media/` folder.
+# Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width
+# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
+# Set `preview_only` to `true` to just use the image for thumbnails.
+image:
+  placement: 1
+  caption: A small spawn backend swap for a calmer runner lifecycle.
+  focal_point: Center
+  preview_only: true
+  alt_text: Abstract diagram of async tasks and worker threads flowing through a safer subprocess spawn backend.
+  # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
+---
+
+I recently hit a very annoying failure mode while running Ansible Runner from a Python program that uses both `asyncio` and worker threads. Most runs were fine. Then, once in a while, a runner call just stopped making progress. No obvious exception. No clear reproduction. Just one of those "why is this process still here?" moments.
+
+The clue was an old `ptyprocess` issue: [`PtyProcess.spawn` is not safe for use in multithreaded applications](https://github.com/pexpect/ptyprocess/issues/43). The maintainer note there describes the likely symptom as random-looking deadlocks and hangs, which matched the behaviour almost too well.
+
+{{< toc mobile_only=true is_open=true >}}
+
+{{% steps %}}
+
+### The shape of the problem
+
+Ansible Runner uses `pexpect` around the child process it starts. That is convenient because `pexpect` can watch output, answer prompts, and keep the runner loop simple.
+
+The uncomfortable part is the default PTY-backed spawn path. Under the hood, it relies on a `fork()`-to-`exec()` sequence with Python-level work in the middle. In a single-threaded program, this is usually boring enough. In a multithreaded program, it becomes much less boring.
+
+After `fork()`, only the calling thread exists in the child process. Locks that were held by other threads may still look held, but the threads that could release them no longer exist. If the child then runs code that touches one of those locks before `exec()`, it can freeze in a place that looks unrelated to your application logic.
+
+That is why this class of bug feels random. The failure depends on timing: which thread held what, exactly when the runner spawned a child, and what the child touched before `exec()`.
+
+### Why `asyncio` made it easier to notice
+
+`asyncio` itself was not the bug. The event loop was just the place where the symptom became visible.
+
+In my case, runner work was launched from async workflows and delegated into threads so that blocking Ansible execution would not stop the event loop. That means the process had at least three moving parts:
+
+- an event loop scheduling higher-level tasks;
+- worker threads calling into Ansible Runner;
+- `pexpect` spawning and supervising child processes.
+
+This is exactly the kind of runtime where a "mostly fine" fork-safety issue can turn into a production-grade headache.
+
+### The workaround I chose
+
+The practical workaround was not to make the PTY path safer. I replaced it at the integration boundary.
+
+`pexpect` also has [`popen_spawn.PopenSpawn`](https://pexpect.readthedocs.io/en/stable/api/popen_spawn.html), which uses `subprocess.Popen` instead of a PTY-backed spawn. For my use case, I did not need a real terminal. I needed a child process, stdout/stderr handling, pattern matching, timeouts, and predictable termination. A subprocess-backed spawn was a better fit.
+
+The patch had three parts:
+
+1. Create a small spawn adapter on top of `PopenSpawn`.
+2. Preserve the methods that Ansible Runner expects, especially process liveness and termination behaviour.
+3. Monkey patch the runner's `pexpect.spawn` reference early enough that runner instances use the adapter.
+
+The adapter is not just a constructor wrapper. It also carries the close, timeout, liveness, and runner-termination semantics needed by the runner loop. Stripped of project-specific logging, the relevant code is:
+
+```python
+import os
+import signal
+import time
+from collections.abc import Awaitable
+from typing import Any
+
+from ansible_runner import Runner
+from pexpect.exceptions import ExceptionPexpect, TIMEOUT
+from pexpect.popen_spawn import PopenSpawn
+
+
+class RunnerSpawn(PopenSpawn):
+    """An Ansible runner spawn."""
+
+    def __init__(self, cmd: str, args: list[str] | None = None, **kwargs: Any) -> None:
+        """Initialise an Ansible runner spawn.
+
+        Parameters
+        ----------
+        cmd : str
+            A command.
+        args : list[str] | None, default: `None`
+            Command arguments (default: `None`). Do not provide these if they have already been included in ``cmd``.
+        **kwargs : dict[str, typing.Any], optional
+            Keyword arguments.
+        """
+        cmd: list[str] = [cmd]
+        if args:
+            cmd.extend(args)
+
+        try:
+            super().__init__(
+                cmd=cmd,
+                **{
+                    key: value
+                    for key, value in kwargs.items()
+                    if key
+                    in (
+                        "codec_errors",
+                        "cwd",
+                        "encoding",
+                        "env",
+                        "logfile",
+                        "maxread",
+                        "preexec_fn",
+                        "searchwindowsize",
+                        "timeout",
+                    )
+                },
+            )
+        except Exception as exception:
+            raise ExceptionPexpect(f"Failed to initialise an Ansible runner spawn with the cmd: {cmd}") from exception
+
+    def close(self, force=True) -> None:
+        """Close an Ansible runner spawn.
+
+        Parameters
+        ----------
+        force : bool, default: `True`
+            A flag denoting whether to force closing an Ansible runner spawn after failed graceful termination (`True`,
+            default) or not (`False`).
+
+        Notes
+        -----
+        `ptyprocess.PtyProcess.terminate()` is a reference.
+        """
+        if not self.isalive():
+            self.closed = True
+            return
+
+        try:
+            self.kill(sig=signal.SIGHUP)
+            time.sleep(0.1)
+            if not self.isalive():
+                return
+
+            self.kill(sig=signal.SIGCONT)
+            time.sleep(0.1)
+            if not self.isalive():
+                return
+
+            self.kill(sig=signal.SIGINT)
+            if not force:
+                return
+
+            time.sleep(0.1)
+            if not self.isalive():
+                return
+
+            self.kill(sig=signal.SIGKILL)
+        except OSError:
+            pass
+        finally:
+            self.closed = True
+
+    def expect(self, *args, **kwargs) -> Awaitable[int] | int | None:
+        try:
+            return super().expect(*args, **kwargs)
+        except TIMEOUT:
+            # `ansible_runner.runner.Runner.run()` contains a fix to expect an EOF in at most 5 seconds. After monkey
+            # patching `ansible_runner.runner.pexpect.spawn`, a timeout exception causes unexpected resource leaks.
+            # Reference: https://github.com/ansible/ansible-runner/issues/1330
+            return None
+
+    def isalive(self) -> bool:
+        """Check if an Ansible runner spawn's process is alive.
+
+        Returns
+        -------
+        bool
+            A flag denoting whether an Ansible runner spawn's process is alive (`True`) or not (`False`).
+        """
+        if not (alive := self.proc.poll() is None):
+            self.exitstatus = self.proc.returncode
+
+        return alive
+
+
+def handle_runner_termination(cls: type[Runner], pid: int, pidfile: str | None = None) -> None:
+    """Handle Ansible runner termination.
+
+    Parameters
+    ----------
+    cls : type[ansible_runner.runner.Runner]
+        An Ansible runner class.
+    pid : int
+        An Ansible runner spawn's process ID.
+    pidfile : str | None, default: `None`
+        A daemon's PID file path (default: `None`).
+    """
+    _ = cls  # Suppress a warning regarding an unused var.
+    try:
+        os.kill(pid, signal.SIGKILL)
+    except OSError:
+        pass
+
+    try:
+        if pidfile:
+            os.remove(pidfile)
+    except OSError:
+        pass
+```
+
+Then I patch the runner entry points before creating runner objects:
+
+```python
+ansible_runner.Runner.handle_termination = classmethod(handle_runner_termination)
+ansible_runner.runner.pexpect.spawn = RunnerSpawn
+```
+
+The timeout handling is part of the adapter on purpose. Ansible Runner has had fixes around draining final output until EOF so that events are not lost near process shutdown; see [`ansible-runner` issue #1330](https://github.com/ansible/ansible-runner/issues/1330) for the general shape of that race. After replacing the spawn backend, letting a `TIMEOUT` escape from `expect()` could short-circuit cleanup and leak resources, so the adapter returns `None`.
+
+That is the main lesson here: the monkey patch is small, but the compatibility surface is not only `spawn(cmd)`. It includes liveness, exit status, timeout behaviour, and termination. The replacement should look boringly compatible to the runner loop.
+
+### Things I would check before copying this pattern
+
+This workaround is not a universal "replace pexpect with subprocess" rule.
+
+It is a good fit when:
+
+- your runner commands do not genuinely require PTY behaviour;
+- you are embedding runner calls inside a multithreaded Python process;
+- your hangs line up with child-process spawning rather than Ansible task logic;
+- you can patch the spawn path before any runner objects are created.
+
+It is a poor fit when:
+
+- the child process needs terminal-specific behaviour;
+- your automation depends on exact PTY semantics;
+- you cannot control import order;
+- you have not tested cancellation, timeout, and signal handling.
+
+### Takeaway
+
+When a Python program mixes `asyncio`, threads, and child-process orchestration, `fork()` details stop being trivia. A hang may not come from the async task you are staring at. It may come from a child process being born in a runtime where another thread held the wrong lock at the wrong time.
+
+For my case, moving Ansible Runner away from the PTY-backed `pexpect` spawn path made the runner lifecycle much more predictable. The patch is intentionally unglamorous: keep Runner's expectations intact, use a subprocess-backed spawn where a PTY is unnecessary, and make termination boring.
+
+That is often the best kind of production fix. Not clever. Just less surprising.
+
+{{% /steps %}}
