@@ -70,19 +70,24 @@ An Apple Watch Series 8 (GPS, 45mm).
 ## 👨‍💻 Dev
 
 - [Visual Studio Code](https://code.visualstudio.com) has been my primary editor for many years.
-  
+
   - I know VS Code is built on top of [Electron](https://www.electronjs.org). I used this framework to develop a cross-platform desktop app once. Tbh, it was not bad, but I never found a simple way to make it "lightweight" in the time I had. Every framework has trade-offs, right?
   - I explored [Sublime Text](https://www.sublimetext.com) and [Zed](https://zed.dev). They were gorgeous. Perhaps I may switch to another editor one day? 🤔
+
 - I use the following IDEs for their advanced or convenient features, or sometimes because they are part of collaborative work environment settings on relatively large codebases.
 
   - Go: [GoLand](https://www.jetbrains.com/go).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
   - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
 
-- I often use [Codex](https://chatgpt.com/codex) and [GitHub Copilot](https://github.com/copilot) for AI-assisted programming.
+- I mainly use [Codex](https://chatgpt.com/codex) now for AI-assisted programming. At work, I also use [Claude Code CLI](https://claude.com/product/claude-code) and an internal [OpenCode](https://opencode.ai)-based CLI with third-party models provided by my company. I stopped using [GitHub Copilot](https://github.com/copilot) after its billing plan changes.
+
 - To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
+
 - I currently use [cmux](https://cmux.com) most often on macOS. I still recommend [WindTerm](https://github.com/kingToolbox/WindTerm), although I have mostly abandoned it myself. I use [Xterminal](https://www.xterminal.cn) from time to time, while [Xshell](https://www.netsarang.com/en/xshell) is still installed on Windows for accessing work environments.
+
 - [Apifox](https://apifox.com) is an API platform I use for debugging and some QA testing on DEV, SIT, and UAT. Its official site promotes the platform as `Apifox = Postman + Swagger + Mock + JMeter`. Well, I will leave that without comment. It's generally good for teamwork.
+
 - Any other stuff? So much, but this might be worth mentioning. **Given the limited free time I can currently spend on my repos**, my personal blog and portfolio would be almost impossible without [Cloudflare](https://www.cloudflare.com), [Hugo](https://github.com/gohugoio/hugo), [HugoBlox Kit](https://github.com/HugoBlox/kit), [Vercel](https://vercel.com), and [giscus](https://github.com/giscus/giscus). ❤️
 
   > [!TIP]
