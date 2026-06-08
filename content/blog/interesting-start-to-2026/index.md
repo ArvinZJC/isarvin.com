@@ -49,7 +49,7 @@ for f in codesign*; do
 done
 ```
 
-![Logi Options+ on macOS is signed with a certificate expired at the start of 2026.](cert-expiration-evidence.png)
+![Logi Options+ on macOS is signed with a certificate expired at the start of 2026.](cert-expiry-evidence.png)
 
 macOS, being very strict about reality, looks at the clock, looks at the certificate, and says: "This app lives in the past. I refuse." 🧐
 
