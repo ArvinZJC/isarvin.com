@@ -14,12 +14,12 @@
 - Single pages like `content/uses/index.md` and `content/misc.md` use Hugo shortcodes such as `{{< toc >}}`, `{{% steps %}}`, and `{{< cards >}}`; custom share icons live in `assets/media/icons/custom/` and are referenced as `custom/<name>`.
 
 ## HugoBlox Customization Points
-- `layouts/_partials/hbx/blocks/resume-biography/block.html` customizes the home biography block; `cta-button-list/block.html` renders the home buttons from `content/_index.md`.
-- `layouts/_partials/hooks/body-end/change-background-colour.html` rotates the home background hue and synchronizes giscus theme changes; `enable-vercel-*.html` inject Vercel analytics scripts.
+- `layouts/_partials/hbx/blocks/resume-biography/block.html` customises the home biography block; `cta-button-list/block.html` renders the home buttons from `content/_index.md`.
+- `layouts/_partials/hooks/body-end/change-background-colour.html` rotates the home background hue and synchronises giscus theme changes; `enable-vercel-*.html` inject Vercel analytics scripts.
 - `assets/css/custom.css` contains narrow visual overrides for mobile padding, transparent CTA backgrounds, dark-mode steps, footer spacing, and biography spacing.
 
 ## Configuration Map
-- `config/_default/hugo.yaml` defines base URL, blog cascade behavior, outputs, taxonomies, image processing, and Git-backed edit links.
+- `config/_default/hugo.yaml` defines base URL, blog cascade behaviour, outputs, taxonomies, image processing, and Git-backed edit links.
 - `config/_default/params.yaml` holds HugoBlox identity, theme, header/footer, giscus comments, analytics placeholders, AI crawler guidance, and repository metadata.
 - `config/_default/menus.yaml` drives the Home/Blog/Uses/Miscellaneous nav; `languages.yaml` is currently English-only (`en-gb`).
 
@@ -41,6 +41,7 @@
 ## Editing Conventions
 - Keep source edits scoped to the relevant content/config/layout asset; avoid broad theme rewrites.
 - Commit subjects must start with one of `feat:`, `fix:`, `docs:`, `style:`, `build:`, `refactor:`, `revert:`, `test:`, `perf:`, `ci:`, or `chore:`; keep the subject concise, non-sentence style, and without trailing punctuation.
+- Write site copy and guidance in natural en-GB; treat `en-gb` as the only active language unless the user explicitly asks for another locale.
 - Preserve the author's informal personal voice in posts and pages, including mixed English/Chinese where already present.
 - For new posts, prefer a leaf bundle with local media and complete image `alt_text`, matching existing blog examples.
 - Before changing custom blocks, compare the data shape in `content/_index.md` and `data/authors/me.yaml`; those templates assume HugoBlox profile fields and block-specific `design` options.
