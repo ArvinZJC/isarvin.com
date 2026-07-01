@@ -40,6 +40,7 @@
 
 ## Editing Conventions
 - Keep source edits scoped to the relevant content/config/layout asset; avoid broad theme rewrites.
+- Commit subjects must start with one of `feat:`, `fix:`, `docs:`, `style:`, `build:`, `refactor:`, `revert:`, `test:`, `perf:`, `ci:`, or `chore:`; keep the subject concise, non-sentence style, and without trailing punctuation.
 - Preserve the author's informal personal voice in posts and pages, including mixed English/Chinese where already present.
 - For new posts, prefer a leaf bundle with local media and complete image `alt_text`, matching existing blog examples.
 - Before changing custom blocks, compare the data shape in `content/_index.md` and `data/authors/me.yaml`; those templates assume HugoBlox profile fields and block-specific `design` options.

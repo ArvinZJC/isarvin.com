@@ -1,6 +1,6 @@
 ---
 title: Disabling FaceFusion's NSFW Filter from Source Code
-summary: A tiny local patch that bypasses FaceFusion's content analyser gate.
+summary: A tiny local patch that bypasses FaceFusion 3.7.0's content analyser gate.
 date: 2026-06-07
 authors:
   - me
@@ -29,7 +29,7 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-FaceFusion 3.6.1 has a built-in content analyser. In the source I checked, image and video workflows call it before doing the main processing work. If the analyser says the target is NSFW, the workflow returns early.
+FaceFusion 3.7.0 has a built-in content analyser. In the source I checked, image and video workflows call it before doing the main processing work. If the analyser says the target is NSFW, the workflow returns early.
 
 This blog records a tiny local patch to disable that gate from source code.
 
@@ -39,7 +39,7 @@ This blog records a tiny local patch to disable that gate from source code.
 
 > [!NOTE]
 >
-> The examples below are based on FaceFusion 3.6.1.
+> The examples below are based on FaceFusion 3.7.0, from a `master` checkout at `b8f8046 last minute change to frame distribution`.
 
 {{< toc mobile_only=true is_open=true >}}
 
@@ -102,21 +102,17 @@ There is one more check in `facefusion/core.py`. During `common_pre_check()`, Fa
 
 ```python
 content_analyser_content = inspect.getsource(content_analyser).encode()
-content_analyser_hash = hash_helper.create_hash(content_analyser_content)
 
-return all(module.pre_check() for module in common_modules) and content_analyser_hash == 'b14e7b92'
+return hash_helper.create_hash(content_analyser_content) == '975d67d6'
 ```
 
 After editing `content_analyser.py`, that hash no longer matches. So the second local change is to stop enforcing the original hash:
 
 ```python
-content_analyser_content = inspect.getsource(content_analyser).encode()
-content_analyser_hash = hash_helper.create_hash(content_analyser_content)
-
-return all(module.pre_check() for module in common_modules)
+return True
 ```
 
-Strictly speaking, the two hash-related lines become unused after this edit. I left them there in my quick patch because the goal was to change as little runtime behaviour as possible outside the guard itself. If I were maintaining a long-lived fork, I would either remove the unused lines or replace this with a proper configuration flag.
+The result is deliberately small: `common_pre_check()` becomes a plain pass-through for this local checkout. If I were maintaining a long-lived fork, I would replace this with a proper configuration flag.
 
 ### Review the final diff
 
@@ -135,8 +131,10 @@ diff --git a/facefusion/content_analyser.py b/facefusion/content_analyser.py
 
 diff --git a/facefusion/core.py b/facefusion/core.py
 @@
--	return all(module.pre_check() for module in common_modules) and content_analyser_hash == 'b14e7b92'
-+	return all(module.pre_check() for module in common_modules)
+-	content_analyser_content = inspect.getsource(content_analyser).encode()
+-
+-	return hash_helper.create_hash(content_analyser_content) == '975d67d6'
++	return True
 ```
 
 ### Verify the patch locally
@@ -153,13 +151,13 @@ Then run FaceFusion from that modified checkout and retry the input that previou
 For a quick source-level sanity check, I also like searching the call sites:
 
 ```bash
-rg -n "analyse_image|analyse_video|detect_nsfw|content_analyser_hash" facefusion
+rg -n "analyse_image|analyse_video|detect_nsfw|common_pre_check" facefusion
 ```
 
 If `rg` is not available, use plain `grep` instead:
 
 ```bash
-grep -RInE "analyse_image|analyse_video|detect_nsfw|content_analyser_hash" facefusion
+grep -RInE "analyse_image|analyse_video|detect_nsfw|common_pre_check" facefusion
 ```
 
 In my checkout, the important shape is:
@@ -167,7 +165,7 @@ In my checkout, the important shape is:
 - `image_to_image.py` calls `analyse_image()` during setup.
 - `image_to_video.py` calls `analyse_video()` during setup.
 - `analyse_frame()` delegates to `detect_nsfw()`.
-- `common_pre_check()` no longer rejects the edited analyser source by hash.
+- `common_pre_check()` returns `True` instead of rejecting the edited analyser source by hash.
 
 ### Keep the patch local
 
