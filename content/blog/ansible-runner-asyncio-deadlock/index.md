@@ -1,5 +1,5 @@
 ---
-title: Avoiding Random Ansible Runner Hangs in Async Multi-threaded Python
+title: Avoiding Random Ansible Runner Hangs in Async Multithreaded Python
 summary: Replacing the PTY-backed pexpect spawn path with a subprocess-backed one.
 date: 2026-06-07
 authors:
@@ -29,9 +29,9 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-I recently hit a very annoying failure mode while running Ansible Runner from a Python program that uses both `asyncio` and worker threads. Most runs were fine. Then, once in a while, a runner call just stopped making progress. No obvious exception. No clear reproduction. Just one of those "why is this process still here?" moments.
+I recently hit an annoying failure mode while running Ansible Runner from a Python program that uses both `asyncio` and worker threads. Most runs completed normally. Every now and then, a runner call just stopped making progress. No obvious exception. No clear reproduction. Just one of those "why is this process still here?" moments.
 
-The clue was an old `ptyprocess` issue: [`PtyProcess.spawn` is not safe for use in multithreaded applications](https://github.com/pexpect/ptyprocess/issues/43). The maintainer note there describes the likely symptom as random-looking deadlocks and hangs, which matched the behaviour almost too well.
+The clue was an old `ptyprocess` issue: [`PtyProcess.spawn` is not safe for use in multithreaded applications](https://github.com/pexpect/ptyprocess/issues/43). The maintainer note there describes the likely symptom as random-seeming deadlocks and hangs, which matched the behaviour almost too well.
 
 {{< toc mobile_only=true is_open=true >}}
 
@@ -57,7 +57,7 @@ In my case, runner work was launched from async workflows and delegated into thr
 - worker threads calling into Ansible Runner;
 - `pexpect` spawning and supervising child processes.
 
-This is exactly the kind of runtime where a "mostly fine" fork-safety issue can turn into a production-grade headache.
+This is exactly the kind of runtime where a "mostly fine" fork-safety issue can turn into a real production headache.
 
 ### The workaround I chose
 
@@ -68,10 +68,10 @@ The practical workaround was not to make the PTY path safer. I replaced it at th
 The patch had three parts:
 
 1. Create a small spawn adapter on top of `PopenSpawn`.
-2. Preserve the methods that Ansible Runner expects, especially process liveness and termination behaviour.
+2. Start each runner child in its own process group and make termination signal the whole group.
 3. Monkey patch the runner's `pexpect.spawn` reference early enough that runner instances use the adapter.
 
-The adapter is not just a constructor wrapper. It also carries the close, timeout, liveness, and runner-termination semantics needed by the runner loop. Stripped of project-specific logging, the relevant code is:
+The adapter is not just a constructor wrapper. It also carries the close, timeout, liveness, and process-group termination semantics needed by the runner loop. This exact patch is for Linux and Unix-like systems: it relies on POSIX process groups through `os.setsid`, `os.killpg`, and `preexec_fn`. Stripped of project-specific logging, the relevant code is:
 
 ```python
 import os
@@ -80,7 +80,6 @@ import time
 from collections.abc import Awaitable
 from typing import Any
 
-from ansible_runner import Runner
 from pexpect.exceptions import ExceptionPexpect, TIMEOUT
 from pexpect.popen_spawn import PopenSpawn
 
@@ -99,11 +98,18 @@ class RunnerSpawn(PopenSpawn):
             Command arguments (default: `None`). Do not provide these if they have already been included in ``cmd``.
         **kwargs : dict[str, typing.Any], optional
             Keyword arguments.
+
+        Notes
+        -----
+        ``preexec_fn`` defaults to `os.setsid` so that the subprocess and all its descendants share a process group.
+        This ensures `close()` and `kill()` can terminate the entire process tree, preventing orphaned child processes
+        when ansible-runner spawns nested subprocesses.
         """
         cmd: list[str] = [cmd]
         if args:
             cmd.extend(args)
 
+        kwargs.setdefault("preexec_fn", os.setsid)
         try:
             super().__init__(
                 cmd=cmd,
@@ -191,42 +197,28 @@ class RunnerSpawn(PopenSpawn):
 
         return alive
 
+    def kill(self, sig) -> None:
+        """Send a signal to the process group of an Ansible runner spawn.
 
-def handle_runner_termination(cls: type[Runner], pid: int, pidfile: str | None = None) -> None:
-    """Handle Ansible runner termination.
-
-    Parameters
-    ----------
-    cls : type[ansible_runner.runner.Runner]
-        An Ansible runner class.
-    pid : int
-        An Ansible runner spawn's process ID.
-    pidfile : str | None, default: `None`
-        A daemon's PID file path (default: `None`).
-    """
-    _ = cls  # Suppress a warning regarding an unused var.
-    try:
-        os.kill(pid, signal.SIGKILL)
-    except OSError:
-        pass
-
-    try:
-        if pidfile:
-            os.remove(pidfile)
-    except OSError:
-        pass
+        Parameters
+        ----------
+        sig : int
+            A signal.
+        """
+        os.killpg(os.getpgid(self.proc.pid), sig)
 ```
 
-Then I patch the runner entry points before creating runner objects:
+Then I patch the runner spawn entry point before creating runner objects:
 
 ```python
-ansible_runner.Runner.handle_termination = classmethod(handle_runner_termination)
 ansible_runner.runner.pexpect.spawn = RunnerSpawn
 ```
 
-The timeout handling is part of the adapter on purpose. Ansible Runner has had fixes around draining final output until EOF so that events are not lost near process shutdown; see [`ansible-runner` issue #1330](https://github.com/ansible/ansible-runner/issues/1330) for the general shape of that race. After replacing the spawn backend, letting a `TIMEOUT` escape from `expect()` could short-circuit cleanup and leak resources, so the adapter returns `None`.
+The process-group detail matters. My first version focused on replacing the PTY-backed spawn path and preserving top-level runner termination. That still left a gap: Ansible Runner may spawn nested subprocesses. Killing only the direct child can leave descendants behind. By setting `preexec_fn` to `os.setsid`, the adapter creates a fresh process group for the runner tree; by overriding `kill()` to call `os.killpg(os.getpgid(self.proc.pid), sig)`, the same close sequence now signals the whole group.
 
-That is the main lesson here: the monkey patch is small, but the compatibility surface is not only `spawn(cmd)`. It includes liveness, exit status, timeout behaviour, and termination. The replacement should look boringly compatible to the runner loop.
+The timeout handling is also part of the adapter on purpose. Ansible Runner has had fixes around draining final output until EOF so that events are not lost near process shutdown; see [`ansible-runner` issue #1330](https://github.com/ansible/ansible-runner/issues/1330) for the general shape of that race. After replacing the spawn backend, letting a `TIMEOUT` escape from `expect()` could short-circuit cleanup and leak resources, so the adapter returns `None`.
+
+That is the main lesson here: the monkey patch is small, but the compatibility surface is not only `spawn(cmd)`. It includes liveness, exit status, timeout behaviour, and process-tree termination. The replacement should look boringly compatible to the runner loop.
 
 ### Things I would check before copying this pattern
 
@@ -236,6 +228,7 @@ It is a good fit when:
 
 - your runner commands do not genuinely require PTY behaviour;
 - you are embedding runner calls inside a multithreaded Python process;
+- your runtime is Linux or another Unix-like system with POSIX process-group semantics;
 - your hangs line up with child-process spawning rather than Ansible task logic;
 - you can patch the spawn path before any runner objects are created.
 
@@ -243,6 +236,7 @@ It is a poor fit when:
 
 - the child process needs terminal-specific behaviour;
 - your automation depends on exact PTY semantics;
+- you need the same code path to work on Windows;
 - you cannot control import order;
 - you have not tested cancellation, timeout, and signal handling.
 
