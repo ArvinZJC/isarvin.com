@@ -69,6 +69,8 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 ## 👨‍💻 Dev
 
+- I now mainly use the [ChatGPT app](https://chatgpt.com/download), both for chatting on the go and for AI-assisted programming with Codex. At work, I also use [Claude Desktop and Claude Code CLI](https://claude.com/download), along with an internal CLI based on [OpenCode](https://opencode.ai) that uses third-party models provided by my company. I stopped using [GitHub Copilot](https://github.com/copilot) after changes to its billing model.
+
 - [Visual Studio Code](https://code.visualstudio.com) has been my primary editor for many years.
 
   - I know VS Code is built on top of [Electron](https://www.electronjs.org). I used this framework to develop a cross-platform desktop app once. Tbh, it was not bad, but I never found a simple way to make it "lightweight" in the time I had. Every framework has trade-offs, right?
@@ -79,8 +81,6 @@ An Apple Watch Series 8 (GPS, 45mm).
   - Go: [GoLand](https://www.jetbrains.com/go).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
   - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
-
-- I mainly use [Codex](https://chatgpt.com/codex) now for AI-assisted programming. At work, I also use [Claude Code CLI](https://claude.com/product/claude-code) and an internal [OpenCode](https://opencode.ai)-based CLI with third-party models provided by my company. I stopped using [GitHub Copilot](https://github.com/copilot) after its billing plan changes.
 
 - To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
 
@@ -96,7 +96,7 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 ## 🚀 Productivity
 
-- [ChatGPT](https://chatgpt.com), [DeepSeek](https://chat.deepseek.com), [Doubao](https://www.doubao.com/chat), [Qwen](https://www.qianwen.com), and [Yuanbao](https://yuanbao.tencent.com/chat). In the age of AI agents, life is being reshaped. I also tried [Claude](https://claude.ai), [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), [Kimi](https://www.kimi.com), etc. They were surprising.
+- Besides the AI tools mentioned in the [Dev](#-dev) section, I sometimes use [DeepSeek](https://chat.deepseek.com), [Doubao](https://www.doubao.com/chat), [Qwen](https://www.qianwen.com), and [Yuanbao](https://yuanbao.tencent.com/chat). AI agents are reshaping the way we work and live. I have also tried [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), and [Kimi](https://www.kimi.com), among others, and found some of them surprisingly capable.
 - [Microsoft Edge](https://www.microsoft.com/edge) and [Safari](https://www.apple.com/safari).
 - [Notion](https://www.notion.com) for note-taking and task management (more like a replacement for to-do list apps? 🤪).
 - [Tencent Docs](https://docs.qq.com). I would highlight its Smart Canvas and Smart Sheet despite the fact that it's usually an alternative for me to share online docs with my colleagues.
