@@ -282,6 +282,8 @@ hugo.linux
 .codex/
 .omo/
 .sisyphus/
+.superpowers/
+.worktrees/
 docs/superpowers/
 package-lock.json
 static/
