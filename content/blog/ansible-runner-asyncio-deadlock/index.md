@@ -65,13 +65,14 @@ The practical workaround was not to make the PTY path safer. I replaced it at th
 
 `pexpect` also has [`popen_spawn.PopenSpawn`](https://pexpect.readthedocs.io/en/stable/api/popen_spawn.html), which uses `subprocess.Popen` instead of a PTY-backed spawn. For my use case, I did not need a real terminal. I needed a child process, stdout/stderr handling, pattern matching, timeouts, and predictable termination. A subprocess-backed spawn was a better fit.
 
-The patch had three parts:
+The patch had four parts:
 
 1. Create a small spawn adapter on top of `PopenSpawn`.
 2. Start each runner child in its own process group and make termination signal the whole group.
-3. Monkey patch the runner's `pexpect.spawn` reference early enough that runner instances use the adapter.
+3. Preserve the lifecycle behaviour Ansible Runner expects, including timeout handling, process status, and resource cleanup.
+4. Monkey patch the runner's `pexpect.spawn` reference early enough that runner instances use the adapter.
 
-The adapter is not just a constructor wrapper. It also carries the close, timeout, liveness, and process-group termination semantics needed by the runner loop. This exact patch is for Linux and Unix-like systems: it relies on POSIX process groups through `os.setsid`, `os.killpg`, and `preexec_fn`. Stripped of project-specific logging, the relevant code is:
+The adapter is not just a constructor wrapper. It also carries the close, timeout, liveness, process-status, pipe-cleanup, and process-group termination semantics needed by the runner loop. This exact patch is for Linux and Unix-like systems: it relies on POSIX process groups through `os.setsid`, `os.killpg`, and `preexec_fn`. Stripped of project-specific logging, the relevant code is:
 
 ```python
 import os
@@ -146,11 +147,13 @@ class RunnerSpawn(PopenSpawn):
         -----
         `ptyprocess.PtyProcess.terminate()` is a reference.
         """
-        if not self.isalive():
-            self.closed = True
+        if self.closed:
             return
 
         try:
+            if not self.isalive():
+                return
+
             self.kill(sig=signal.SIGHUP)
             time.sleep(0.1)
             if not self.isalive():
@@ -173,7 +176,21 @@ class RunnerSpawn(PopenSpawn):
         except OSError:
             pass
         finally:
-            self.closed = True
+            try:
+                if not self.isalive():
+                    proc = getattr(self, "proc", None)
+                    if proc is not None:
+                        for pipe_name in ("stdin", "stdout"):
+                            pipe: Any = getattr(proc, pipe_name, None)
+                            if pipe is None or pipe.closed:
+                                continue
+
+                            try:
+                                pipe.close()
+                            except OSError:
+                                pass
+            finally:
+                self.closed = True
 
     def expect(self, *args, **kwargs) -> Awaitable[int] | int | None:
         try:
@@ -193,7 +210,12 @@ class RunnerSpawn(PopenSpawn):
             A flag denoting whether an Ansible runner spawn's process is alive (`True`) or not (`False`).
         """
         if not (alive := self.proc.poll() is None):
-            self.exitstatus = self.proc.returncode
+            if self.proc.returncode >= 0:
+                self.exitstatus = self.proc.returncode
+                self.signalstatus = None
+            else:
+                self.exitstatus = None
+                self.signalstatus = -self.proc.returncode
 
         return alive
 
@@ -214,11 +236,15 @@ Then I patch the runner spawn entry point before creating runner objects:
 ansible_runner.runner.pexpect.spawn = RunnerSpawn
 ```
 
-The process-group detail matters. My first version focused on replacing the PTY-backed spawn path and preserving top-level runner termination. That still left a gap: Ansible Runner may spawn nested subprocesses. Killing only the direct child can leave descendants behind. By setting `preexec_fn` to `os.setsid`, the adapter creates a fresh process group for the runner tree; by overriding `kill()` to call `os.killpg(os.getpgid(self.proc.pid), sig)`, the same close sequence now signals the whole group.
+The process-group detail matters because Ansible Runner may spawn nested subprocesses. Killing only the direct child can leave descendants behind. By setting `preexec_fn` to `os.setsid`, the adapter creates a fresh process group for the runner tree; by overriding `kill()` to call `os.killpg(os.getpgid(self.proc.pid), sig)`, the close sequence signals the whole group.
+
+Process termination is only part of cleanup. `PopenSpawn` owns the subprocess's `stdin` and `stdout` pipes and uses a reader thread to consume output. Once the process is no longer alive, `close()` closes both pipes, allowing those resources and the reader to finish cleanly. It skips cleanup immediately when the spawn is already closed, only closes pipes after the child has exited, tolerates individual pipe-close failures, and still marks the spawn as closed in every path.
+
+The liveness check also translates `subprocess` return codes into the status fields expected by `pexpect`: a non-negative return code becomes `exitstatus`, while a negative return code represents termination by a signal and becomes `signalstatus`. Keeping those two cases separate prevents a signal number from being mistaken for an ordinary process exit code.
 
 The timeout handling is also part of the adapter on purpose. Ansible Runner has had fixes around draining final output until EOF so that events are not lost near process shutdown; see [`ansible-runner` issue #1330](https://github.com/ansible/ansible-runner/issues/1330) for the general shape of that race. After replacing the spawn backend, letting a `TIMEOUT` escape from `expect()` could short-circuit cleanup and leak resources, so the adapter returns `None`.
 
-That is the main lesson here: the monkey patch is small, but the compatibility surface is not only `spawn(cmd)`. It includes liveness, exit status, timeout behaviour, and process-tree termination. The replacement should look boringly compatible to the runner loop.
+That is the main lesson here: the monkey patch is small, but the compatibility surface is not only `spawn(cmd)`. It includes liveness, exit and signal status, timeout behaviour, pipe cleanup, idempotent closing, and process-tree termination. The replacement should look boringly compatible to the runner loop.
 
 ### Things I would check before copying this pattern
 
@@ -244,7 +270,7 @@ It is a poor fit when:
 
 When a Python program mixes `asyncio`, threads, and child-process orchestration, `fork()` details stop being trivia. A hang may not come from the async task you are staring at. It may come from a child process being born in a runtime where another thread held the wrong lock at the wrong time.
 
-For my case, moving Ansible Runner away from the PTY-backed `pexpect` spawn path made the runner lifecycle much more predictable. The patch is intentionally unglamorous: keep Runner's expectations intact, use a subprocess-backed spawn where a PTY is unnecessary, and make termination boring.
+For my case, moving Ansible Runner away from the PTY-backed `pexpect` spawn path made the runner lifecycle much more predictable. The patch is intentionally unglamorous: keep Runner's expectations intact, use a subprocess-backed spawn where a PTY is unnecessary, terminate the whole process group, and release the subprocess resources once it exits.
 
 That is often the best kind of production fix. Not clever. Just less surprising.
 
