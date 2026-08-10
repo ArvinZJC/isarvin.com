@@ -30,10 +30,10 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 
 ### Linux Distros
 
-- An ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP3 on [eSurfing Cloud](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
-- An AArch64 VM running Fedora Workstation 44 on [Parallels Desktop](https://www.parallels.com).
+- An x86_64 ECS instance with `e.xlarge.2` running openEuler 24.03 LTS SP4 on [eSurfing Cloud](https://www.ctyun.cn). It's still a VM virtualised using KVM, QEMU, libvirt, etc.
+- An AArch64 VM running Ubuntu Desktop 24.04 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
-- A cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
+- An x86_64 cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 - Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). It may look quite large because I have not spent much time optimising it.
 
 ### OriginOS 6
@@ -43,7 +43,7 @@ A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built on Android 16. I
 ### Windows 11 25H2
 
 - An AArch64 VM on [Parallels Desktop](https://www.parallels.com).
-- A cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
+- An x86_64 cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 
 ### iOS 26
 
