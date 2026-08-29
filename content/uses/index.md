@@ -34,7 +34,7 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 - An AArch64 VM running Ubuntu Desktop 24.04 on [Parallels Desktop](https://www.parallels.com).
 - A LoongArch64 VM running Kylin Server V10 SP3 on [UTM](https://mac.getutm.app).
 - An x86_64 cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
-- Several Docker containers for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). It may look quite large because I have not spent much time optimising it.
+- A Docker container for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). It may look quite large because I have not spent much time optimising it.
 
 ### OriginOS 6
 
@@ -120,10 +120,11 @@ An Apple Watch Series 8 (GPS, 45mm).
 
 ## 🥑 Other Gear
 
+- Action camera: [DJI](https://www.dji.com) Osmo Action 6.
 - Chargers and power banks: [Anker](https://www.anker.com) and [CUKTECH](https://cuktech.com.cn/).
-- Keyboards: [Varmilo](https://varmilo.com).
+- Keyboards: [Ticktype](https://www.ticktype.com).
 - Mice: [Logitech](https://www.logitech.com).
-- I chose [TGIF T0](https://www.tgif-official.com) for my ergonomic gaming chairs.
+- I chose [TGIF](https://www.tgif-official.com) T0 for my ergonomic gaming chairs.
 - I listen to AirPods Pro 2 when on the go.
 
 [^1]: E.g., [卓易通](https://www.droitong.com).
