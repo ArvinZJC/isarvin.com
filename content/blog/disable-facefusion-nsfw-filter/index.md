@@ -39,7 +39,7 @@ This blog records a tiny local patch to disable that gate from source code.
 
 > [!NOTE]
 >
-> The examples below are based on FaceFusion 3.7.0, from a `master` checkout at `b8f8046 last minute change to frame distribution`.
+> The examples below are based on FaceFusion 3.7.0, from a `master` checkout at `b8f8046 last minute change to frame distribution`. I have decided not to chase every upstream change here, but the same idea should theoretically apply to FaceFusion 3.5.x through 3.8.x; at the time of writing, the latest release I checked is 3.8.2. If you prefer a more detailed guide, see [Turn Off FaceFusion NSFW Filter](https://www.facefusion.co/turn-off-facefusion-nsfw-filter).
 
 {{< toc mobile_only=true is_open=true >}}
 
