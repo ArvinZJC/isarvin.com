@@ -1,5 +1,4 @@
-## Ignore unnecessary files to avoid pushing them.
-## Reference: https://github.com/github/gitignore
+# Ignore unnecessary files to avoid pushing them. Reference: https://github.com/github/gitignore
 
 ## Global/Linux.gitignore (7155844).
 *~
