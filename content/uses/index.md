@@ -45,11 +45,11 @@ A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built on Android 16. I
 - An AArch64 VM on [Parallels Desktop](https://www.parallels.com).
 - An x86_64 cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 
-### iOS 26
+### iOS 27
 
 An iPhone 17 Pro with 512GB storage.
 
-### iPadOS 26
+### iPadOS 27
 
 An 11-inch iPad Pro with an Apple M4 chip, 512GB storage, an Apple Pencil Pro with no engraving, and a Magic Keyboard.
 
@@ -59,7 +59,7 @@ There's a self-deprecating joke.
 
 It means: buy it for productivity, then end up watching iQIYI afterwards. 🤷‍♂️
 
-### macOS Tahoe
+### macOS 27
 
 A 16-inch MacBook Pro with an Apple M2 Max chip, 64GB memory, and 1TB SSD storage. It cost a lot of money. But who cares? <mark>As long as I love it, it's worth it.</mark> 🤓
 
