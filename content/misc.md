@@ -20,4 +20,6 @@ commentable: true
 
 ## 🧩 Unsorted
 
+- [IU Beside You · Animation examples](https://codex-pets.isarvin.com/iu-beside-you/)
+- [Jaehyun Next Door · Animation examples](https://codex-pets.isarvin.com/jaehyun-next-door/)
 - [镜维镜像上传 JSON 模式配置生成工具](https://glance-at-utils.isarvin.com/image-upload-config-generator/)
