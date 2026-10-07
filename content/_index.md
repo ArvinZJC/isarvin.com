@@ -15,7 +15,7 @@ sections:
       text: |
         Arvin Zhao (赵吉忱) claims to be a top expert in cloud computing, but in reality, he is just an introverted geek who happens to love it.
         
-        Alumnus [@UofG](https://www.gla.ac.uk)
+        Alumnus of [@UofG](https://www.gla.ac.uk)
       # Author slug (data/authors/<slug>.yaml)
       username: me
     design:
