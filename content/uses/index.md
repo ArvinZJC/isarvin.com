@@ -63,9 +63,9 @@ It means: buy it for productivity, then end up watching iQIYI afterwards. 🤷�
 
 A 16-inch MacBook Pro with an Apple M2 Max chip, 64GB memory, and 1TB SSD storage. It cost a lot of money. But who cares? <mark>As long as I love it, it's worth it.</mark> 🤓
 
-### watchOS 26
+### watchOS 27
 
-An Apple Watch Series 8 (GPS, 45mm).
+An Apple Watch Series 12 (46mm ceramic case).
 
 ## 👨‍💻 Dev
 
