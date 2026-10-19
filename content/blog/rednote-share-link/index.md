@@ -5,12 +5,10 @@ date: 2026-10-13
 authors:
   - me
 categories:
-  - Year 2026
-  - Practice
+  - Case Studies
 tags:
   - RedNote
   - Privacy
-  - Python 3
   - Python
 image:
   placement: 1

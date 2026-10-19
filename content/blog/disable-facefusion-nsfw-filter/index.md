@@ -5,13 +5,10 @@ date: 2026-06-07
 authors:
   - me
 categories:
-  - Year 2026
-  - Practice
-  - Tutorial
+  - Tutorials
 tags:
   - FaceFusion
   - Python
-  - Source Code
   - NSFW Filter
 
 # Cover image.

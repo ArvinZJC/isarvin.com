@@ -13,6 +13,13 @@
 - Author/profile data comes from `data/authors/me.yaml`; homepage biography uses `username: me` to load it.
 - Single pages like `content/uses/index.md` and `content/misc.md` use Hugo shortcodes such as `{{< toc >}}`, `{{% steps %}}`, and `{{< cards >}}`; custom share icons live in `assets/media/icons/custom/` and are referenced as `custom/<name>`.
 
+## Blog Categories and Tags
+- Use one primary category: `Tutorials` for step-by-step guides, `Case Studies` for investigations and fixes built around a specific problem, or `Reflections` for personal updates and commentary. Choose the dominant purpose when a post mixes formats; add a category only for a genuinely distinct recurring group of posts.
+- Do not use years as categories; publication dates already record chronology.
+- Aim for 2–5 tags covering the main tools, platforms and topics. Reuse existing terms and spelling from blog front matter before introducing a new tag; keep product and library casing such as `Python`, `PyPy`, `macOS`, `ansible-runner` and `asyncio`.
+- Prefer unversioned tags (`Python`, `PyPy`); keep version requirements in the title or body. Avoid synonyms, vague labels and tags for tools or platforms mentioned only in passing.
+- Taxonomy terms generate public archive URLs. When renaming or removing a term, review its use across all posts and check the generated `/categories/` and `/tags/` archives with a Hugo build.
+
 ## HugoBlox Customization Points
 - `layouts/_partials/hbx/blocks/resume-biography/block.html` customises the home biography block; `cta-button-list/block.html` renders the home buttons from `content/_index.md`.
 - `layouts/_partials/hooks/body-end/change-background-colour.html` rotates the home background hue and synchronises giscus theme changes; `enable-vercel-*.html` inject Vercel analytics scripts.

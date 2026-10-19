@@ -5,13 +5,11 @@ date: 2025-02-09
 authors:
   - me
 categories:
-  - Year 2025
-  - Tutorial
+  - Tutorials
 tags:
-  - Code Formatter
-  - Python 2
-  - Black
   - Python
+  - Black
+  - Code Formatting
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.

@@ -5,16 +5,12 @@ date: 2026-06-07
 authors:
   - me
 categories:
-  - Year 2026
-  - Practice
-  - Tutorial
+  - Tutorials
 tags:
   - Linux
   - Kernel
   - System Administration
   - GRUB
-  - Debian
-  - Red Hat
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.

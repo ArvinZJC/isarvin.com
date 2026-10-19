@@ -5,12 +5,10 @@ date: 2025-02-04
 authors:
   - me
 categories:
-  - Year 2025
-  - General
+  - Reflections
 tags:
-  - Spring Festival
+  - Blogging
   - New Year
-  - Get Started
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.

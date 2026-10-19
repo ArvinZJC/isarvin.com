@@ -5,17 +5,12 @@ date: 2026-06-08
 authors:
   - me
 categories:
-  - Year 2026
-  - Practice
-  - Tutorial
+  - Tutorials
 tags:
   - LoongArch64
   - QEMU
-  - Virtual Machine
-  - macOS
   - Linux
-  - KylinOS
-  - UnionTech OS
+  - Virtual Machines
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.

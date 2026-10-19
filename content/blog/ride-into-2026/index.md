@@ -5,12 +5,10 @@ date: 2026-02-17
 authors:
   - me
 categories:
-  - Year 2026
-  - General
+  - Reflections
 tags:
-  - Spring Festival
-  - New Year
   - AI
+  - New Year
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.

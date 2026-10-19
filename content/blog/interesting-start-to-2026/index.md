@@ -5,14 +5,13 @@ date: 2026-01-07
 authors:
   - me
 categories:
-  - Year 2026
-  - General
+  - Reflections
 tags:
-  - New Year
   - Certificate Expiry
-  - Technical Issues
-  - Logi Options+ on macOS
+  - Logi Options+
+  - macOS
   - League of Legends
+  - New Year
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.

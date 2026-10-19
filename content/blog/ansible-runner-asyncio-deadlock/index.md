@@ -5,14 +5,12 @@ date: 2026-06-07
 authors:
   - me
 categories:
-  - Year 2026
-  - Practice
+  - Case Studies
 tags:
+  - Python
   - ansible-runner
   - pexpect
   - asyncio
-  - Python 3
-  - Python
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.

@@ -5,14 +5,12 @@ date: 2025-02-23
 authors:
   - me
 categories:
-  - Year 2025
-  - Practice
-  - Tutorial
+  - Tutorials
 tags:
-  - PyPy 3
-  - Compilation
-  - LoongArch64
+  - Python
   - PyPy
+  - LoongArch64
+  - Compilation
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.
