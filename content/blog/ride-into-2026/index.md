@@ -9,6 +9,7 @@ categories:
 tags:
   - AI
   - New Year
+  - Work–Life Balance
 
 # Cover image.
 # To use, place an image named `featured.jpg/png` in your page's folder.
