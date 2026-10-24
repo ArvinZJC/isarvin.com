@@ -58,7 +58,7 @@ shasum -a 256 QEMU_EFI_7.2.fd
 
 ### Install QEMU
 
-On macOS, Homebrew is the easiest way to install QEMU:
+On macOS, QEMU can be installed with Homebrew:
 
 ```bash
 brew install qemu

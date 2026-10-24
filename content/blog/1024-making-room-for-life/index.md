@@ -17,7 +17,7 @@ image:
   alt_text: A blue Programmer’s Day board with large Chinese lettering, colourful cartoon characters, and a banner for the 24 October event in Shanghai.
 ---
 
-Happy Programmer’s Day! No tutorial today. Just some rambling, with no guarantee that you’ll learn anything useful. 👀
+Happy Programmer’s Day! A change from the usual technical notes today: a few thoughts on work, keeping up, and making room for the rest of life. Mostly for my future self to look back on, as ever. 👀
 
 In China, we celebrate it on 24 October: 1024 is 2 to the power of 10, a familiar number in computing. When I first learnt the reason for the date, it made immediate sense. Of course we’d pick a power of two for a celebration.
 

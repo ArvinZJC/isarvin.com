@@ -242,7 +242,7 @@ The liveness check also translates `subprocess` return codes into the status fie
 
 The timeout handling is also part of the adapter on purpose. Ansible Runner has had fixes around draining final output until EOF so that events are not lost near process shutdown; see [`ansible-runner` issue #1330](https://github.com/ansible/ansible-runner/issues/1330) for the general shape of that race. After replacing the spawn backend, letting a `TIMEOUT` escape from `expect()` could short-circuit cleanup and leak resources, so the adapter returns `None`.
 
-That is the main lesson here: the monkey patch is small, but the compatibility surface is not only `spawn(cmd)`. It includes liveness, exit and signal status, timeout behaviour, pipe cleanup, idempotent closing, and process-tree termination. The replacement should look boringly compatible to the runner loop.
+The main thing I want to remember is that the monkey patch is small, but the compatibility surface is not only `spawn(cmd)`. It includes liveness, exit and signal status, timeout behaviour, pipe cleanup, idempotent closing, and process-tree termination. The replacement should look boringly compatible to the runner loop.
 
 ### Things I would check before copying this pattern
 
@@ -270,6 +270,6 @@ When a Python program mixes `asyncio`, threads, and child-process orchestration,
 
 For my case, moving Ansible Runner away from the PTY-backed `pexpect` spawn path made the runner lifecycle much more predictable. The patch is intentionally unglamorous: keep Runner's expectations intact, use a subprocess-backed spawn where a PTY is unnecessary, terminate the whole process group, and release the subprocess resources once it exits.
 
-That is often the best kind of production fix. Not clever. Just less surprising.
+I was happy with a less surprising runner lifecycle. That was enough for this fix.
 
 {{% /steps %}}
