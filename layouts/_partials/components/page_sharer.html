@@ -19,10 +19,10 @@
   </a>
   {{ end }}
   {{/* Progressive enhancement: native actions remain hidden without JavaScript. */}}
-  <button type="button" data-share-copy hidden class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" title="Copy link" aria-label="Copy link">
+  <button type="button" data-share-copy hidden class="m-1 cursor-pointer rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" title="Copy link" aria-label="Copy link">
     {{ partial "functions/get_icon" (dict "name" "hero/link" "attributes" "style=\"height: 1em;\"") }}
   </button>
-  <button type="button" data-share-more hidden class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" title="More…" aria-label="More sharing options">
+  <button type="button" data-share-more hidden class="m-1 cursor-pointer rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" title="More…" aria-label="More sharing options">
     {{ partial "functions/get_icon" (dict "name" "hero/ellipsis-horizontal" "attributes" "style=\"height: 1em;\"") }}
   </button>
   <span data-share-status role="status" class="w-full text-center text-sm"></span>
