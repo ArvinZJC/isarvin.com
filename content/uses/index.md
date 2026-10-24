@@ -40,7 +40,7 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 
 A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built on Android 16. I use this phone as a spare in place of a HUAWEI Pura 70 running HarmonyOS 6, where Android apps cannot run because there is no AOSP core unless a HarmonyOS-native app with container-based features[^1] is installed.
 
-### Windows 11 25H2
+### Windows 11 26H2
 
 - An AArch64 VM on [Parallels Desktop](https://www.parallels.com).
 - An x86_64 cloud PC for work on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
