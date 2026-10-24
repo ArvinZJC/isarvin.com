@@ -13,6 +13,28 @@
 - Author/profile data comes from `data/authors/me.yaml`; homepage biography uses `username: me` to load it.
 - Single pages like `content/uses/index.md` and `content/misc.md` use Hugo shortcodes such as `{{< toc >}}`, `{{% steps %}}`, and `{{< cards >}}`; custom share icons live in `assets/media/icons/custom/` and are referenced as `custom/<name>`.
 
+## Image Standards
+- Apply these standards when adding or replacing any source image in `content/` or `assets/media/`. Check dimensions **and** file size before finishing a content change; Hugo's responsive output does not reduce the source files stored in Git.
+- Limits below are bounding boxes, not crop sizes. Preserve aspect ratio and composition, never upscale an existing image, and keep smaller images if they remain clear. File sizes are review targets rather than a reason to damage legibility.
+
+| Image purpose | Source dimensions | File-size target | Format |
+| --- | --- | --- | --- |
+| Blog/page cover (`featured.*`) | Fit within 1,200 × 1,200 px; prefer landscape for new covers | ≤ 300 KiB | JPEG for photos and textured illustrations; PNG for crisp diagrams or transparency |
+| Content photograph | Fit within 1,600 × 1,600 px | ≤ 300 KiB | JPEG; WebP is also suitable for inline-only images |
+| Screenshot, chart or text-heavy diagram | Fit within 1,600 × 1,600 px, unless readable text requires more | ≤ 400 KiB | Losslessly optimised PNG; SVG for original vector diagrams |
+| Author avatar (`assets/media/authors/`) | 512 × 512 px for the current 200 px display | ≤ 100 KiB | JPEG for photos/portraits; PNG if transparency is needed |
+| Site logo (`assets/media/logo.*`) | Fit within 512 × 512 px; keep the current 256 px asset | ≤ 100 KiB | SVG where supported, otherwise PNG with transparency preserved |
+| Site icon (`assets/media/icon.png`) | 512 × 512 px | ≤ 200 KiB | PNG, retaining transparency |
+| Social-sharing image (`assets/media/sharing.*`) | 1,200 × 630 px | ≤ 400 KiB | JPEG or PNG for social-crawler compatibility |
+| Decorative backgrounds and custom icons | Keep vector artwork as SVG with its `viewBox`; raster backgrounds fit within 1,920 × 1,920 px | SVG ≤ 20 KiB; raster ≤ 400 KiB | SVG preferred; JPEG/WebP for raster backgrounds |
+
+- Start JPEG/WebP encoding around quality 80–85 and inspect the result. Strip unnecessary EXIF, GPS and embedded thumbnails; apply orientation and convert to sRGB before discarding colour profiles. Use lossless PNG compression for screenshots and transparent graphics.
+- For photographic or textured illustration covers, use JPEG even if the source has an alpha channel that serves no visible purpose. Flatten unnecessary transparency onto the intended background before conversion; retain PNG only when transparency or crisp graphic detail materially affects the result. Try the appropriate format before reducing dimensions solely to meet the byte target.
+- Review images containing small text at their intended display size. Allow a documented exception near the image reference if the dimension or byte target would make essential detail unreadable. Preserve animation when optimising GIF/WebP files; none are currently used.
+- Keep one `featured.*` per bundle. When changing format, update explicit Markdown, front-matter and template references, and remove the replaced source only after checking the new image. Keep editable/full-resolution masters outside the published source tree.
+- For a larger avatar display, provide roughly twice the displayed dimensions and update this standard alongside `content/_index.md`; the current biography template generates a 400 px avatar.
+- Before completing image work: inventory all added/changed source images, inspect covers and text-heavy content visually, run a Hugo build, and verify cover discovery, inline images, avatar, favicon and social-image references in generated HTML. Do not commit generated output. Do not repeatedly re-encode already compliant lossy images just to change their bytes.
+
 ## Blog Categories and Tags
 - Use one primary category: `Tutorials` for step-by-step guides, `Case Studies` for investigations and fixes built around a specific problem, or `Reflections` for personal updates and commentary. Choose the dominant purpose when a post mixes formats; add a category only for a genuinely distinct recurring group of posts.
 - Do not use years as categories; publication dates already record chronology.
