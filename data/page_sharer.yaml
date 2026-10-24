@@ -3,15 +3,15 @@
 # Docs: https://docs.hugoblox.com/reference/page-sharer/
 
 links:
-  - id: weibo
-    url: "https://service.weibo.com/share/share.php?url={url}&title={title}"
-    title: Weibo
-    icon: brands/sinaweibo
-    enable: true
   - id: x
     url: "https://x.com/intent/tweet?url={url}&text={title}"
     title: X
     icon: brands/x
+    enable: true
+  - id: threads
+    url: "https://www.threads.com/intent/post?text={title}%0A%0A{url}"
+    title: Threads
+    icon: brands/threads
     enable: true
   - id: facebook
     url: "https://www.facebook.com/sharer.php?u={url}&t={title}"
@@ -28,10 +28,20 @@ links:
     title: LinkedIn
     icon: brands/linkedin
     enable: true
-  - id: pinterest
-    url: "https://pinterest.com/pin/create/link/?url={url}&description={title}"
-    title: Pinterest
-    icon: brands/pinterest
+  - id: weibo
+    url: "https://service.weibo.com/share/share.php?url={url}&title={title}"
+    title: Weibo
+    icon: brands/sinaweibo
+    enable: true
+  - id: telegram
+    url: "https://t.me/share/url?url={url}&text={title}"
+    title: Telegram
+    icon: brands/telegram
+    enable: true
+  - id: whatsapp
+    url: "https://wa.me/?text={title}%0A%0A{url}"
+    title: WhatsApp
+    icon: brands/whatsapp
     enable: true
   - id: email
     url: "mailto:?subject={title}&body={url}"

@@ -1,0 +1,4 @@
+{{ if ne .Params.share false }}
+  {{ $script := resources.Get "js/page-sharer.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>
+{{ end }}
