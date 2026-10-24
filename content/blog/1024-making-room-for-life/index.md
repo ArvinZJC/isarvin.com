@@ -13,7 +13,7 @@ image:
   placement: 1
   caption: Adapted from my photo with Codex.
   focal_point: Center
-  preview_only: false
+  preview_only: true
   alt_text: A blue Programmer’s Day board with large Chinese lettering, colourful cartoon characters, and a banner for the 24 October event in Shanghai.
 ---
 
