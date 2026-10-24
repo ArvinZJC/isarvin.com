@@ -70,7 +70,8 @@
 ## Editing Conventions
 - Keep source edits scoped to the relevant content/config/layout asset; avoid broad theme rewrites.
 - Commit subjects must start with one of `feat:`, `fix:`, `docs:`, `style:`, `build:`, `refactor:`, `revert:`, `test:`, `perf:`, `ci:`, or `chore:`; keep the subject concise, non-sentence style, and without trailing punctuation.
-- Write site copy and guidance in natural en-GB; treat `en-gb` as the only active language unless the user explicitly asks for another locale.
-- Preserve the author's informal personal voice in posts and pages, including mixed English/Chinese where already present.
+- Write posts, pages and guidance in natural, idiomatic British English (en-GB), including spelling, phrasing and punctuation; avoid literal translations and wording that feels unnatural to a native British English reader. Treat `en-gb` as the only active language unless the user explicitly asks for another locale.
+- Match the tone to the purpose of each post or page while preserving the author's personal voice: relaxed and conversational for personal reflections, clear and precise for technical guides, and appropriate to the audience for other pages. Keep humour natural rather than forced.
+- Use mixed English/Chinese only with the user's explicit agreement. Existing mixes reflect the author's deliberate choices and should be preserved unless a change is requested; they do not authorise introducing new mixes. A Chinese outline or source text does not imply permission to include Chinese in the finished copy.
 - For new posts, prefer a leaf bundle with local media and complete image `alt_text`, matching existing blog examples.
 - Before changing custom blocks, compare the data shape in `content/_index.md` and `data/authors/me.yaml`; those templates assume HugoBlox profile fields and block-specific `design` options.

@@ -34,7 +34,7 @@ The year 2026 kicked off with a bold statement: "What if time... just stopped wo
 
 First, League of Legends players around the world found themselves locked out for hours because an SSL certificate quietly expired. No dragons, no Baron, just TLS saying nope.
 
-Then, not wanting to be left out, Logitech decided to add some cross-industry solidarity. As shown in the screenshot, Logi Options+ on macOS strikes. Purple screen with a loading circle. No mouse customisation enlightenment. 😇
+Then, not wanting to be left out, Logitech decided to add some cross-industry solidarity. As shown in the screenshot, Logi Options+ on macOS has gone on strike. Purple screen with a loading circle. So much for customising my mouse. 😇
 
 ![Logi Options+ on macOS stuck loading forever.](logi-options+-on-macos.png)
 
@@ -48,7 +48,7 @@ for f in codesign*; do
 done
 ```
 
-![Logi Options+ on macOS is signed with a certificate expired at the start of 2026.](cert-expiry-evidence.png)
+![Logi Options+ on macOS is signed with a certificate that expired at the start of 2026.](cert-expiry-evidence.png)
 
 macOS, being very strict about reality, looks at the clock, looks at the certificate, and says: "This app lives in the past. I refuse." 🧐
 

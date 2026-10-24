@@ -30,7 +30,7 @@ image:
 >
 > Python 2.7 is the last major version in the 2.x series and [reached EOL on 1 January 2020](https://www.python.org/doc/sunset-python-2). Please upgrade your Python if possible.
 
-Some of the projects I work on still use Python 2.7. Installing Black for that case can take a little fiddling, so I'd like to show the steps that worked for me.
+Some of the projects I work on still use Python 2.7. Getting Black set up for those projects can take a little fiddling, so I'd like to show the steps that worked for me.
 
 > [!NOTE]
 >

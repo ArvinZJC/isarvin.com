@@ -22,7 +22,7 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to build my own `/uses` page. I don't expect to include every detail here, but it should be enough to spotlight the things I touch on a regular basis. I doubt it will attract much attention, but it was fun anyway. 😼
+Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to build my own `/uses` page. I don't expect to include every detail here, but it should cover the things I use regularly. I doubt it will attract much attention, but it was fun anyway. 😼
 
 {{< toc mobile_only=true is_open=true >}}
 
@@ -76,13 +76,13 @@ An Apple Watch Series 12 (46mm ceramic case).
   - I know VS Code is built on top of [Electron](https://www.electronjs.org). I used this framework to develop a cross-platform desktop app once. Tbh, it was not bad, but I never found a simple way to make it "lightweight" in the time I had. Every framework has trade-offs, right?
   - I explored [Sublime Text](https://www.sublimetext.com) and [Zed](https://zed.dev). They were gorgeous. Perhaps I may switch to another editor one day? 🤔
 
-- I use the following IDEs for their advanced or convenient features, or sometimes because they are part of collaborative work environment settings on relatively large codebases.
+- I use the following IDEs for their features, or because they're part of the team's setup when working on larger codebases.
 
   - Go: [GoLand](https://www.jetbrains.com/go).
   - Python/PyPy: [PyCharm](https://www.jetbrains.com/pycharm).
   - WinUI 3 desktop app (C# .NET): [Visual Studio](https://visualstudio.microsoft.com) extended with [dotUltimate](https://www.jetbrains.com/dotnet)[^2].
 
-- To format code on save, [Prettier](https://prettier.io) is my choice for most cases. I would mention [Black](https://github.com/psf/black) when it comes to a Python project.
+- To format code on save, [Prettier](https://prettier.io) is my choice in most cases. [Black](https://github.com/psf/black) is also worth mentioning for Python projects.
 
 - I currently use [cmux](https://cmux.com) most often on macOS. I still recommend [WindTerm](https://github.com/kingToolbox/WindTerm), although I have mostly abandoned it myself. I use [Xterminal](https://www.xterminal.cn) from time to time, while [Xshell](https://www.netsarang.com/en/xshell) is still installed on Windows for accessing work environments.
 
@@ -99,7 +99,7 @@ An Apple Watch Series 12 (46mm ceramic case).
 - Besides the AI tools mentioned in the [Dev](#-dev) section, I sometimes use [DeepSeek](https://chat.deepseek.com), [Doubao](https://www.doubao.com/chat), [Qwen](https://www.qianwen.com), and [Yuanbao](https://yuanbao.tencent.com/chat). AI agents are reshaping the way we work and live. I have also tried [Gemini](https://gemini.google.com/app), [Grok](https://grok.com), and [Kimi](https://www.kimi.com), among others, and found some of them surprisingly capable.
 - [Microsoft Edge](https://www.microsoft.com/edge) and [Safari](https://www.apple.com/safari).
 - [Notion](https://www.notion.com) for note-taking and task management (more like a replacement for to-do list apps? 🤪).
-- [Tencent Docs](https://docs.qq.com). I would highlight its Smart Canvas and Smart Sheet despite the fact that it's usually an alternative for me to share online docs with my colleagues.
+- [Tencent Docs](https://docs.qq.com). It's one of the tools I use to share documents with colleagues. Its Smart Canvas and Smart Sheet are worth a mention.
 - [Typora](https://typora.io).
 - [WPS](https://www.wps.com).
 - [draw.io](https://www.drawio.com).
@@ -125,7 +125,7 @@ An Apple Watch Series 12 (46mm ceramic case).
 - Keyboards: [Ticktype](https://www.ticktype.com).
 - Mice: [Logitech](https://www.logitech.com).
 - I chose [TGIF](https://www.tgif-official.com) T0 for my ergonomic gaming chairs.
-- I listen to AirPods Pro 2 when on the go.
+- I use AirPods Pro 2 when on the go.
 
 [^1]: E.g., [卓易通](https://www.droitong.com).
 [^2]: ReSharper C++ and Rider are excluded.

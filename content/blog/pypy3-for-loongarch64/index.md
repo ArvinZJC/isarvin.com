@@ -31,10 +31,10 @@ image:
 
 > [!NOTE]
 >
-> 1. The following is demonstrated as the root user in a LoongArch64 VM running Kylin Server V10 SP3. Adjustments may be required to match your environment.
+> 1. I ran the commands below as root in a LoongArch64 VM running Kylin Server V10 SP3. Adjustments may be required to match your environment.
 > 2. PyPy 3.11 v7.3.18 is used. Other PyPy 3 versions should follow a similar process.
 
-In particular, I should stress that this OS version leverages old-world[^1] technologies.
+This OS version uses the old-world[^1] LoongArch environment.
 
 {{< toc mobile_only=true is_open=true >}}
 
@@ -116,4 +116,4 @@ I will use the compiled binary directly for packaging.
 
 {{% /steps %}}
 
-[^1]: See [a post in LA UOSC](https://bbs.loongarch.org/d/89) for a brief intro on the so-called old/new world.
+[^1]: See [this post on LA UOSC](https://bbs.loongarch.org/d/89) for a brief introduction to the old-world/new-world distinction.

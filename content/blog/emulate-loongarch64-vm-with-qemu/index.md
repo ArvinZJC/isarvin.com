@@ -102,7 +102,7 @@ Adjust the filename and size for your own guest. These systems are Red Hat-like,
 
 ### Boot from an ISO
 
-Use this shape when installing a fresh LoongArch64 server guest from an ISO:
+The following example shows how to boot a LoongArch64 server guest from an ISO to start the installation. Adapt the filenames, resource allocations and network settings to your environment:
 
 ```bash
 qemu-system-loongarch64 \
