@@ -9,12 +9,20 @@ categories:
 tags:
   - AI
   - Work–Life Balance
+
+# Cover image.
+# To use, place an image named `featured.jpg/png` in your page's folder.
+# Otherwise, specify the `filename` option to load an image from your `assets/media/` folder.
+# Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width
+# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
+# Set `preview_only` to `true` to just use the image for thumbnails.
 image:
   placement: 1
   caption: Adapted from my photo with Codex.
   focal_point: Center
   preview_only: true
   alt_text: A blue Programmer’s Day board with large Chinese lettering, colourful cartoon characters, and a banner for the 24 October event in Shanghai.
+  # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
 Happy Programmer’s Day! A change from the usual technical notes today: a few thoughts on work, keeping up, and making room for the rest of life. Mostly for my future self to look back on, as ever. 👀

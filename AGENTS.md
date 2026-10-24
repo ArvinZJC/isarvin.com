@@ -9,6 +9,7 @@
 ## Content Model
 - Blog posts are leaf bundles: `content/blog/<slug>/index.md`, with images beside the post, e.g. `content/blog/pypy3-for-loongarch64/end-of-build.png`.
 - Blog front matter follows the existing pattern: `title`, `summary`, `date`, `authors: [me]`, `categories`, `tags`, and an `image` block with `alt_text`; every blog post should include at least one cover image.
+- For every post or page with a top-level cover `image` block, copy and preserve the complete `# Cover image.` guidance block and the commented `filename` example from `content/blog/get-started/index.md`. Before completing a content edit, check that these comments are present and consistent. Pages without a cover image do not need this block; preserve the homepage's separate, block-specific comments.
 - The homepage is not a normal Markdown article. It is a HugoBlox landing page in `content/_index.md` with ordered `sections`.
 - Author/profile data comes from `data/authors/me.yaml`; homepage biography uses `username: me` to load it.
 - Single pages like `content/uses/index.md` and `content/misc.md` use Hugo shortcodes such as `{{< toc >}}`, `{{% steps %}}`, and `{{< cards >}}`; custom share icons live in `assets/media/icons/custom/` and are referenced as `custom/<name>`.
