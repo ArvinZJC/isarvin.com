@@ -26,3 +26,9 @@ mounts:
     target: layouts
   - source: assets
     target: assets
+
+  # Keep generated search assets separate from tracked ownership verification files.
+  - source: static
+    target: static
+  - source: verification
+    target: static

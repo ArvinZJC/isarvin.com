@@ -4,7 +4,7 @@
 - This is Arvin's personal Hugo/HugoBlox site, deployed at `https://www.isarvin.com`.
 - Source content lives in `content/`; site-wide configuration is split under `config/_default/`.
 - HugoBlox is pulled as a Hugo module in `go.mod` and `config/_default/module.yaml`; local overrides are mounted from `layouts/` and `assets/`.
-- Treat `public/`, `resources/`, `.hugo_build.lock`, `hugo_stats.json`, and `static/pagefind/` as generated build/search output, not source edits. `static/` currently only holds Pagefind output.
+- Treat `public/`, `resources/`, `.hugo_build.lock`, `hugo_stats.json`, and `static/pagefind/` as generated build/search output, not source edits. `static/` currently only holds Pagefind output. Site ownership verification files live in `verification/`, mounted to the published site root.
 
 ## Content Model
 - Blog posts are leaf bundles: `content/blog/<slug>/index.md`, with images beside the post, e.g. `content/blog/pypy3-for-loongarch64/end-of-build.png`.
