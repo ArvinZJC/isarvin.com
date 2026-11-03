@@ -53,7 +53,7 @@ I don’t want every trip or evening out to need a justification, either. A conc
 
 Getting out more has brought new experiences, new conversations, and a few feelings I don’t quite know what to do with.
 
-Relationships are probably the most confusing part. If I count a brief almost-relationship in my first year at university, I’m now in my ninth year of being single. I rushed into that almost-relationship partly to get over my first crush from senior high school. Looking back, that wasn’t a good reason to start something with someone else. If it doesn’t count, I’ve never really been in a relationship.
+Relationships are probably the most confusing part. If I count a brief almost-relationship in my first year at university, I’m now in my ninth year of being single. I rushed into that almost-relationship partly to get over my crush from senior high school. Looking back, that wasn’t a good reason to start something with someone else. If it doesn’t count, I’ve never really been in a relationship.
 
 My lack of experience can be awkward. On my birthday this year, I went on a date arranged by my family. I hadn’t really wanted to go, but couldn’t think of a good reason to decline, so I went out of politeness. The conversation turned to sex. When I said I’d never had sex, she thought I wasn’t being honest. I wasn’t quite sure what to say to that.
 
