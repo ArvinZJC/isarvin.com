@@ -10,7 +10,6 @@ tags:
   - Certificate Expiry
   - Logi Options+
   - macOS
-  - League of Legends
   - New Year
 
 # Cover image.

@@ -7,6 +7,7 @@ authors:
 categories:
   - Case Studies
 tags:
+  - VDiskProbe
   - Python
   - QEMU
   - Virtual Machines

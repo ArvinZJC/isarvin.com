@@ -7,7 +7,9 @@ authors:
 categories:
   - Reflections
 tags:
+  - Sunxue
   - AI
+  - Fitness
   - Work–Life Balance
 
 # Cover image.
