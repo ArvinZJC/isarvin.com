@@ -54,7 +54,9 @@ The method and the sample token below come from that article, under [CC BY-NC-SA
 
 I wanted malformed input to fail clearly, especially if RedNote changed the format later.
 
-The script accepts a long RedNote URL, a Markdown link containing it, or a raw token. It normalises HTML-escaped ampersands and the escaped ampersands that can appear when copying Markdown. For URL input, it checks the hostname and requires exactly one non-empty `shareRedId` parameter.
+The script accepts one long RedNote URL, an inline Markdown link containing it, or a raw token. URLs must use HTTP or HTTPS and belong to `xiaohongshu.com` or one of its subdomains. The scheme and hostname are case-insensitive, but `shareRedId` is case-sensitive: it must appear exactly once, with a non-empty value, in the query rather than the fragment.
+
+Copied links sometimes contain escaped ampersands. The script handles backslash-escaped ampersands and explicit HTML forms such as `&amp;`, `&AMP;`, `&#38;` and `&#x26;`, including leading zeros in the numeric forms. It leaves other HTML entities alone so query parameters stay intact. It also accepts balanced parentheses within the URL in an inline Markdown link, though this is not a full Markdown parser.
 
 Then it checks the token itself:
 
@@ -68,7 +70,7 @@ For a short link, you'll need to follow its redirect first and copy the resultin
 
 ### The Python script
 
-Here is the complete script, including the calculation, input handling and command-line entry point. It uses only Python's standard library. Copy this block into a local file named `rednote_share_id.py` to try it.
+Here is the complete script, including the calculation, input handling and command-line entry point. It runs on Python 3 and needs no third-party packages. Copy this block into a local file named `rednote_share_id.py` to try it.
 
 ```python
 #!/usr/bin/env python3
@@ -82,7 +84,6 @@ No HTTP requests, third-party dependencies, or account enumeration.
 """
 import argparse
 import base64
-import html
 import json
 import re
 import sys
@@ -94,11 +95,35 @@ OFFSETS = (2, 6, 2, 0, 3, 5, 4, 9, 6, 7, 5, 2,
 
 def extract(value):
     """Decode one token or long share URL; reject unknown formats."""
-    value = html.unescape(value.strip().replace(r"\&", "&"))
-    urls = re.findall(r'https?://[^\s<>"\)]+', value)
-    if urls:
-        if len(urls) != 1:
+    value = value.strip().replace(r"\&", "&")
+    # Decode explicit ampersand escapes, not query names such as &copy=1.
+    value = re.sub(r"&(?:amp|AMP|#0*38|#[xX]0*26);", "&", value)
+    urls = []
+    position = 0
+    url_pattern = re.compile(r'https?://[^\s<>"]+', re.IGNORECASE)
+    while True:
+        match = url_pattern.search(value, position)
+        if match is None:
+            break
+        if urls:
             raise ValueError("Supply exactly one share URL.")
+        start = match.start()
+        url = match.group()
+        # Only a surrounding Markdown/prose parenthesis is a delimiter.
+        # Balanced parentheses inside a URL belong to its path or query.
+        if start > 0 and value[start - 1] == "(":
+            depth = 0
+            for index, char in enumerate(url):
+                if char == "(":
+                    depth += 1
+                elif char == ")":
+                    if depth == 0:
+                        url = url[:index]
+                        break
+                    depth -= 1
+        urls.append(url)
+        position = start + len(url)
+    if urls:
         parsed = urlsplit(urls[0])
         host = (parsed.hostname or "").lower()
         if host != "xiaohongshu.com" and not host.endswith(".xiaohongshu.com"):
@@ -154,11 +179,15 @@ if __name__ == "__main__":
 
 There is one offset per decoded byte. The 32-character token gives us 24 bytes, so `zip` processes all of them after the length check. Subtraction wraps modulo 256; the hexadecimal check then rejects values that don't fit the expected encoding.
 
-`keep_blank_values=True` keeps empty query parameters so I can reject them. Duplicate parameters also fail: there's no good reason to guess which one was intended. The leading dot in the hostname suffix check prevents a lookalike domain from passing as a subdomain.
+The ampersand replacement is deliberately narrow. A general-purpose HTML decoder can interpret the `&copy` in `&copy=1` as a copyright symbol and alter the query. Likewise, stopping at the first closing parenthesis could lose part of a query containing `(one(two))`, including a duplicate `shareRedId` further along. The URL scan preserves balanced parentheses within the URL and treats the closing parenthesis of the Markdown link as a separate delimiter.
 
-Re-encoding the recovered bytes should reproduce the token exactly. This checks the calculation, not the identity of the sender.
+`keep_blank_values=True` preserves empty query values so an empty `shareRedId` cannot slip past the checks, even alongside a valid one. Repeated `shareRedId` parameters also fail: there's no good reason to guess which one was intended. The leading dot in the hostname suffix check prevents a lookalike domain from passing as a subdomain.
 
-After saving the code above as `rednote_share_id.py`, run it with a raw token or a quoted long URL. With no argument it prompts for input; redirected standard input works too.
+Re-encoding the recovered bytes should reproduce the token exactly. This checks format consistency; it does not establish token authenticity, account existence or the identity of the sender.
+
+After saving the code above as `rednote_share_id.py`, run it with a raw token or a quoted long URL. With no argument in a terminal, it prompts for one line. When input is piped or redirected, it reads until the end of the input and treats the whole lot as a single value, not a batch. An argument supplied on the command line takes precedence over standard input.
+
+Successful decoding writes one JSON object to standard output and exits with status 0. Invalid input writes an error to standard error and exits with status 2.
 
 ```bash
 python3 rednote_share_id.py 'Mjc0Mzc6OkA-QEZETExFTDY0Ozo4OjxA'
@@ -185,13 +214,13 @@ The output has two Boolean fields that are easy to confuse:
 
 - `profile_verified: false` is always false, because the script never loads the profile.
 
-My own token passed the round-trip check. I opened the resulting URL in a browser and, sure enough, it was my profile. A plain HTTP fetch hadn't returned the profile details, so I needed the browser for that check. The internal account ID was also different from the RedNote account number shown on my profile.
+My own token passed the round-trip check. I opened the resulting URL in a browser and, sure enough, it was my profile. A plain HTTP fetch hadn't returned the profile details, so I needed the browser for that check. The internal account ID was also different from the RedNote account number shown on my profile. That confirmed the result for my own link; the offline calculation alone cannot verify a profile.
 
 A forwarded link can still carry the original sharer's token, though. If a mate sends me somebody else's link, decoding it may lead to that person's account rather than my mate's.
 
 ### A few regression checks
 
-Save this beside `rednote_share_id.py` to check the expected result and a few inputs that should fail:
+Save this as `test_rednote_share_id.py` beside `rednote_share_id.py` and run it with `python3 test_rednote_share_id.py` to check the expected result, a few copied-link formats and inputs that should fail:
 
 ```python
 from rednote_share_id import extract
@@ -202,12 +231,24 @@ assert result["account_id"] == "0123456789abcdef01234567"
 assert result["round_trip_matches"] is True
 assert result["profile_verified"] is False
 
-# Derive the real platform origin from the decoder's profile URL.
+# Reuse the scheme and hostname from the generated profile URL.
 origin = result["profile_url"].split("/user/profile/")[0]
+for value in (
+    origin.upper() + "/?shareRedId=" + TOKEN,
+    origin + "/?shareRedId=" + TOKEN + "&copy=1",
+    origin + "/?a=1&#038;shareRedId=" + TOKEN,
+    "[post](" + origin + "/?a=(one(two))&shareRedId=" + TOKEN + ")",
+):
+    assert extract(value)["account_id"] == result["account_id"]
+
 for value in (
     "", "abc", "A" * 32, TOKEN + "=",
     origin + "/explore/example",
     origin + "/?shareRedId=" + TOKEN + "&shareRedId=" + TOKEN,
+    origin + "/?shareRedId=" + TOKEN + "&a=(one)&shareRedId=" + TOKEN,
+    origin + "/?shareRedId=" + TOKEN + ")",
+    origin + "/#shareRedId=" + TOKEN,
+    origin + "/?shareredid=" + TOKEN,
 ):
     try:
         extract(value)
@@ -217,7 +258,7 @@ for value in (
         raise AssertionError("Unexpectedly accepted: " + repr(value))
 ```
 
-My full tests also cover copied Markdown, HTML-escaped query strings, short links and lookalike hostnames. The artificial token is enough to test the calculation, so I've kept my real share URL and account details out of the fixtures.
+These checks run offline and print nothing if they pass; a failed assertion raises an error. The artificial token is enough to test the calculation and parsing rules without putting my real share URL or account details in the examples.
 
 ### What the link gave away
 
