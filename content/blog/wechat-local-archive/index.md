@@ -2,7 +2,6 @@
 title: Building a Local WeChat Archive on macOS
 summary: A request for MP3s led to a closer look at preserving local WeChat conversations, recovering media and keeping track of what was missing.
 date: 2026-10-13
-lastmod: 2026-10-24
 authors:
   - me
 categories:
@@ -29,7 +28,7 @@ image:
   # filename: my-image.jpg  # Uncomment to load an image from `assets/media/` instead.
 ---
 
-A mate wanted to keep some WeChat voice messages as ordinary audio files and asked me to help. It sounded like a small conversion job: find the files, turn them into MP3s, and give them sensible names. By 24 October 2026, I had extended the investigation to whole conversations, including the media stored alongside them.
+A mate wanted to keep some WeChat voice messages as ordinary audio files and asked me to help. It sounded like a small conversion job: find the files, turn them into MP3s, and give them sensible names. The investigation grew into a way to preserve whole conversations, including the media stored alongside them.
 
 Finding the recordings took more work than converting them. Some promising `.silk_temp` files weren't usable SILK audio. What eventually worked was reading `VoiceInfo.voice_data` from WeChat's local media databases and matching those bytes to the chat records.
 
@@ -37,7 +36,7 @@ Once that worked, I wanted to keep more of the conversation around the recording
 
 I wanted an archive I could read later without WeChat, back up as ordinary files and use selectively for AI analysis. That meant preserving readable transcripts, structured records and local attachments, together with a clear account of anything missing.
 
-The examples below explain the database queries, message matching, media recovery and archive checks. Two self-contained scripts cover individual stages: converting an already-extracted recording and checking an archive in the format described here. A third creates an invented message and attachment for trying the checks. Together, they illustrate the approach; they do not extract a complete conversation from WeChat.
+The full exporter lives in a private repository, but the standalone scripts below can be run without access to it. This post explains the database queries, message matching, media recovery and archive checks behind it. Two scripts cover individual stages: converting an already-extracted recording and checking an archive in the format described here. A third creates an invented message and attachment for trying the checks. Together, they illustrate the approach; they do not extract a complete conversation from WeChat.
 
 {{< toc mobile_only=true is_open=true >}}
 
@@ -86,7 +85,9 @@ Reading live databases also means accounting for SQLite's write-ahead log. Recen
 
 Each read from a message shard uses a transaction. That keeps the queries within that read consistent, but it doesn't freeze all the databases and media files at the same instant. I recorded per-shard read boundaries in the manifest and added checks for certain source changes. I treat the result as a personal archive, not a forensic snapshot.
 
-Key acquisition is a separate operation. Valid saved keys can be reused without restarting WeChat. For key capture, I first close WeChat, then run a temporary, re-signed app copy under LLDB on native Apple Silicon macOS and validate candidate keys against database-page HMACs and read-only SQLCipher queries before saving them. This leaves the installed app and SIP unchanged. The temporary app still uses the real account's data, however, so WeChat itself may change caches or login state during that process. I remove the temporary copy only after its process has stopped; a forced termination can leave files that need checking afterwards.
+Key acquisition is a separate operation. Valid saved keys can be reused without restarting WeChat. Imported database keys are validated with real SQLCipher reads and stored against each database’s exact salt, so a shared path name does not confuse keys from different accounts. I back up the whole key manifest, including any older entries still needed by another account.
+
+For key capture, I first close WeChat, then run a temporary, re-signed app copy under LLDB on native Apple Silicon macOS and validate candidate keys against database-page HMACs and read-only SQLCipher queries before saving them. This leaves the installed app and SIP unchanged. The temporary app still uses the real account's data, however, so WeChat itself may change caches or login state during that process. I remove the temporary copy only after its process has stopped; a forced termination can leave files that need checking afterwards.
 
 These database queries and the capture approach are specific to the WeChat 4.1.15 layout I examined on macOS. Future client versions may require changes. I kept key capture separate from routine export, which neither launches WeChat nor fetches missing media from the network.
 
@@ -94,7 +95,7 @@ These database queries and the capture approach are specific to the WeChat 4.1.1
 
 A readable transcript is only useful if the messages belong to the right conversation and the right people.
 
-In this schema, a conversation table is named `Msg_` followed by the MD5 digest of the conversation's username identifier. Discovery combines contact information with identifiers found in message shards, rather than assuming every surviving conversation still has a current contact entry.
+In this schema, a conversation table is named `Msg_` followed by the MD5 digest of the conversation's username identifier. Discovery combines contact information with identifiers found in message shards, rather than assuming every surviving conversation still has a current contact entry. Tables that cannot be mapped to a conversation remain explicit discovery gaps; an all-conversations export refuses to silently leave them out.
 
 Each shard has its own `Name2Id` mapping. A numeric sender ID from one database cannot safely be looked up in another. Group messages make that especially important: the conversation identifies the group, while the sender identifies a participant.
 
@@ -116,7 +117,7 @@ def voice_message_query(conversation):
 
 The table name is constructed from a fixed prefix and a hexadecimal digest. I check that it exists before querying each shard. The low 32 bits of `local_type` identify the base message type; `34` is voice in this layout. For a full conversation, I read all message types and decode their payloads separately.
 
-Date filters use an explicit timezone. An inclusive end date becomes midnight at the start of the following day, with a strict upper bound, so messages near midnight stay in the intended day. Ordering uses the timestamp and sequence information, with source shard and local row ID as tie-breakers.
+Date filters use an explicit timezone. Both date bounds include the selected calendar day in that timezone, so messages near midnight stay in the intended day. Ordering uses the timestamp and sequence information, with source shard and local row ID as tie-breakers.
 
 I also record where each displayed name came from. A current contact name makes the transcript easier to read, but it doesn't establish which name was displayed when an old message was sent. Unknown senders and uncertain sent/received directions remain labelled unknown.
 
@@ -148,13 +149,13 @@ Replies and forwards need particular care. A forwarded bundle may contain severa
 
 Some quoted media can be resolved through a unique original message in the same conversation and selected export scope. When that evidence is missing or ambiguous, I leave the gap visible rather than search unrelated conversations for a convenient substitute.
 
-There are limits here. A payment card, call record or interactive message may have a readable representation without reproducing everything WeChat displayed or allowed someone to do. Unknown types and partially understood fields stay labelled accordingly. Limits on payload size, nesting depth and item counts bound the work spent decompressing and parsing messages.
+There are limits here. A payment card, call record or interactive message may have a readable representation without reproducing everything WeChat displayed or allowed someone to do. Unknown types and partially understood fields stay labelled accordingly. Limits on payload size, nesting depth and item counts bound the work spent decompressing and parsing messages. Quoted-message type and attachment-size fields are length-checked before conversion. An invalid quoted-message type or excessively deep forwarded XML leaves an explicit warning and a partial result.
 
 ## Finding media, then checking what was found
 
 Media recovery has two separate questions: does this file belong to this message, and what can I faithfully recover from it?
 
-For voice, the match uses both the conversation and server message ID. The audio row lives in a media shard with its own name mapping. A zero server ID cannot establish the match. For the conversation archive, I collapse byte-identical audio candidates but mark distinct payloads as ambiguous. An unreadable media shard is recorded as an access gap, so the lookup cannot be mistaken for a complete one.
+For voice, the match uses both the conversation and server message ID. The audio row lives in a media shard with its own name mapping. A zero server ID cannot establish the match. For the conversation archive, I collapse byte-identical audio candidates but mark distinct payloads as ambiguous. If any media shard cannot be read, the voice lookup reports an access gap instead of selecting a recording from the remaining shards. That avoids claiming a unique match before all candidates can be checked.
 
 The corresponding media lookup has this shape:
 
@@ -294,9 +295,9 @@ Images, videos, files and stickers require other evidence: content digests, acco
 | Ambiguous alternatives | More than one associated candidate remains unresolved. |
 | Unavailable or undecodable content | Whether the obstacle was missing bytes, a key, an index, an unsupported format or a decoding failure. |
 
-That last distinction matters. An unreadable index cannot prove that a file is physically absent. Likewise, a viewable alternative doesn't prove that it is the original attachment.
+That last distinction matters. An unreadable index cannot prove that a file is physically absent. Missing keys and unsupported index schemas remain visible in coverage and beside the attachment, even if another lookup finds a digest-matched file. They also count as warnings in strict mode. Likewise, a viewable alternative doesn't prove that it is the original attachment.
 
-Pictures introduced another layer. Some were ordinary image files; others used XOR encoding or encrypted DAT wrappers. DAT image keys are separate from SQLCipher database keys, so opening a message database doesn't establish that its images can be decoded. I retain the encoded source and validate the decoded result against the available digest and format evidence. Unsupported layouts or missing image keys remain explicit gaps.
+Pictures introduced another layer. Some were ordinary image files; others used XOR encoding or encrypted DAT wrappers. DAT image keys are separate from SQLCipher database keys, so opening a message database doesn't establish that its images can be decoded. I retain the encoded source and validate the decoded result against the available digest and format evidence. Local image-key discovery recognises both ordinary and `reportnow` kvcomm hint filenames within the selected account’s supported storage locations. These hints do not require another login, and derived keys stay in memory rather than entering the archive. Unsupported layouts or missing image keys remain explicit gaps.
 
 For videos, I preserve the local container and use ffprobe to inspect its streams and duration where available, rather than transcode it just to make a copy. Ordinary file attachments are preserved without being executed. Their original display names remain metadata; the stored extension follows the detected format, which can differ from the original filename. Browser playback support is a separate question from whether the bytes were preserved.
 
@@ -306,9 +307,21 @@ Ordinary GIF and WebP stickers can retain their original bytes and animation. Ot
 
 For the WXGF layouts I could decode, I generated PNG or animated WebP previews. Some multipart stickers combine HEVC colour data with JBIG masks, so producing an image requires assembling both colour and transparency. Frame timing and repetition also need attention: getting one frame to display says little about whether the animation is right.
 
-I check the layout before decoding, retain the timing information, and limit frame counts, pixel totals and decoder runtime. Source bytes and decrypted containers remain available beside the preview. Unrecognised structures stay preserved with a reason instead of being treated as a successful partial decode.
+Supported timings follow the inspected macOS client’s decoder rules, including a 100 ms fallback for zero-delay frames. Generic WXGF previews retain the source repetition count; identified stickers follow the installed client’s cyclic playback while active, with the source count recorded separately. The archive cannot reconstruct when a sticker was visible or when playback started and stopped.
+
+I check the layout before decoding, retain the timing information, and limit frame counts, pixel totals and decoder runtime. Source bytes and decrypted containers remain available beside the preview. Multipart decoding requires a fully parsed and validated layout; a partial frame scan doesn't count as a complete animation. Static HEVC extraction can still produce a labelled preview while leaving some container metadata uninterpreted. Unsupported layouts remain preserved with a reason.
 
 Even with these checks, WXGF output remains labelled `preview_only`. The work covers observed layouts and behaviour from the installed client; it doesn't establish equivalence with every WeChat version's rendering. That qualification belongs with the attachment, where a later reader can still find it.
+
+### Choosing previews for reading
+
+Preserving a source and choosing how to display it are separate decisions. The archive has three preview policies: `legacy`, `faithful` and `compact`. All retain the recovered source bytes. The default, `legacy`, uses PNG previews for individual pages in an MPO image container. `faithful` attempts to extract those pages as JPEGs without recompressing their image data, checking decoded pixels, orientation and colour profiles. It keeps the JPEG only if it is smaller than the PNG preview; otherwise, or if validation fails, it uses PNG. The complete MPO remains the source of record; its pages stay separate images, without assuming that auxiliary images are animation frames or reconstructing HDR from them.
+
+For routine reading or analysis, `compact` can make smaller still-image previews with a target maximum edge of 2,048 pixels, without upscaling. It uses JPEG at quality 85 or PNG where transparency requires it or the PNG is smaller. Readable images already within that size are reused, and a compact copy is only kept if it saves space compared with the readable source or extracted MPO page. A larger image can therefore remain the display version when resizing would produce a bigger file. Markdown and HTML display the compact copy while retaining a link to the source. Audio, video and animations are not recompressed by this policy.
+
+If optional image metadata is malformed, a failed compact conversion leaves the readable source available. MPO pages can fall back to pixel-only PNG previews labelled `mpo_preview_metadata_unavailable`, without claiming to preserve orientation or colour-profile interpretation. The complete container remains available for later inspection.
+
+Compact previews can lose small text and fine detail, so I need the preserved source when inspecting a long screenshot, a diagram or anything where those details matter. The manifest records the chosen policy, and derivative metadata records the conversion parameters and source hashes.
 
 ## Making completion measurable
 
@@ -557,25 +570,27 @@ I check the results in that order: export, verify, inspect coverage and then rea
 
 A later export may contain less history than an earlier one. Messages can disappear from the source, and local media caches can change. Replacing an old archive wholesale would risk losing material I'd already recovered.
 
-I therefore write subsequent exports to a new directory, keeping the old archive intact. Before combining old and new records, I check the earlier archive's integrity and require the same account, conversation selection, date filters, timezone and raw-payload setting. Earlier records and media are retained, including conflicting versions.
+I therefore write subsequent exports to a new directory, keeping the old archive intact. Before combining old and new records, I check the earlier archive's integrity and require the same account, conversation selection, date filters, timezone, raw-payload setting and preview policy. Earlier records and media are retained, including conflicting versions. Changing the preview policy requires a separate full export rather than continuing the earlier archive with different settings.
 
 Interrupted exports use the same principle. Complete records with valid checksums can be recovered even if the manifest's counts lag behind. An incomplete final line stays in the old archive; it isn't treated as a complete message.
 
-Improving a preview later is a narrower task: once a completed archive has passed verification, I can generate new derivatives from WXGF containers it already holds. It cannot retrieve an absent original or invent a missing key. Keeping these two operations separate makes it clear when access to the original account is still needed.
+Improving a preview later is a narrower task: once a completed archive has passed verification, I can generate new derivatives from WXGF containers it already holds. The repair uses the archive’s recorded preview policy and image-decoding limits, and writes a new generation whose status stays incomplete until the work succeeds. It cannot retrieve an absent original or invent a missing key. Keeping these two operations separate makes it clear when access to the original account is still needed.
 
 ## Reading and sharing selected history
 
 The archive is useful on its own, but I also wanted to select parts of it for analysis. Monthly Markdown makes that manageable without feeding an entire account's history into another tool.
 
-For sharing, I create a separate copy containing text and selected metadata, with consistent pseudonyms for senders and conversations within that copy. I leave out dedicated source-identifier fields and raw payloads, and include attachments only when I deliberately select them. Creating the copy does not upload anything.
+For sharing, I first verify the source archive, then create a separate copy containing text and selected metadata, with consistent pseudonyms for senders and conversations within that copy. I leave out dedicated source-identifier fields and raw payloads, and leave attachments out by default. Enabling attachment inclusion copies eligible readable media from the selected conversations and date range; it is not a picker for individual files. Creating the copy does not upload anything.
 
 Pseudonyms only address part of the problem. Names and identifiers can still appear in message text, timestamps can reveal routines, and retained location details, images or speech can identify someone directly. I still need to review the selected material. A relative media link in Markdown also doesn't give an AI tool access to that file. OCR and speech transcription would be separate steps; neither is part of this process.
 
-Keys and archives use private filesystem permissions, but those permissions aren't encryption. The whole archive, including attachments and manifests, belongs in the same encrypted storage and backup arrangements as other personal files.
+New archives and copied archive generations use private filesystem permissions. Key imports create private files and make a new state directory private, but leave an existing directory’s permissions unchanged, so I check those when choosing a custom location. These permissions aren't encryption. The whole archive, including attachments and manifests, belongs in the same encrypted storage and backup arrangements as other personal files.
 
 ## What the checks can establish
 
 I used synthetic databases, message payloads and media to test cases such as shard-local sender mappings, conflicting duplicates, missing attachments, nested records, interrupted writes and archive tampering. App operations during key refresh are mocked in those tests. This makes awkward cases reproducible without using private conversations as test fixtures.
+
+The monthly files also do not imply a streaming export: the implementation holds a conversation’s records in memory, so exceptionally large histories can need substantial RAM.
 
 Those tests don't establish support for every account or future client version. Database schemas can change, unfamiliar payloads can remain partial, and a correct decoder cannot recover bytes that were never stored locally. This process also provides no way to import the archive back into WeChat.
 
