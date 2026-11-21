@@ -14,6 +14,11 @@
 - Author/profile data comes from `data/authors/me.yaml`; homepage biography uses `username: me` to load it.
 - Single pages like `content/uses/index.md` and `content/misc.md` use Hugo shortcodes such as `{{< toc >}}`, `{{% steps %}}`, and `{{< cards >}}`; custom share icons live in `assets/media/icons/custom/` and are referenced as `custom/<name>`.
 
+## Cover Visibility
+- Set `image.preview_only` explicitly for every top-level cover. Use `true` by default when the image illustrates the general topic, sets a mood, or identifies a tool. The cover can still appear in listings and social previews.
+- Use `false` when seeing the image at the start contributes to the page itself. Examples include the author's workspace on Uses, a photograph or illustration that forms part of a personal greeting, and a diagram that explains the central idea. Apply the same test to photographs and AI-generated artwork.
+- Single pages such as Miscellaneous can omit a cover when there is no relevant image. Keep screenshots and other evidence beside the passage they support, and avoid displaying the same image twice on a page. Homepage block backgrounds and avatars have their own settings.
+
 ## Image Standards
 - Apply these standards when adding or replacing any source image in `content/` or `assets/media/`. Check dimensions **and** file size before finishing a content change; Hugo's responsive output does not reduce the source files stored in Git.
 - Limits below are bounding boxes, not crop sizes. Preserve aspect ratio and composition, never upscale an existing image, and keep smaller images if they remain clear. File sizes are review targets rather than a reason to damage legibility.
