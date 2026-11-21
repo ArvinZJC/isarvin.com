@@ -36,9 +36,9 @@ Inspired by many pages listed on [uses.tech](https://uses.tech), I decided to bu
 - An x86_64 cloud PC for work running Ubuntu Desktop 22.04 on [CTyun Laptop](https://www.ctyun.cn/products/ydn).
 - A Docker container for work running [CTyunOS V2.0 2.0.1](https://ctyunos.ctyun.cn/#/product/mirrorWarehouseList) on [my MBP](#macos-tahoe). A base image is made public on [Docker Hub](https://hub.docker.com/repository/docker/arvinzjc/base-dev-env/general). It may look quite large because I have not spent much time optimising it.
 
-### OriginOS 6
+### OriginOS 7
 
-A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built on Android 16. I use this phone as a spare in place of a HUAWEI Pura 70 running HarmonyOS 6, where Android apps cannot run because there is no AOSP core unless a HarmonyOS-native app with container-based features[^1] is installed.
+A vivo iQOO 15 with 12GB RAM and 256GB storage. The OS is built on Android 17. I use this phone as a spare in place of a HUAWEI Pura 70 running HarmonyOS 6, where Android apps cannot run because there is no AOSP core unless a HarmonyOS-native app with container-based features[^1] is installed.
 
 ### Windows 11
 
